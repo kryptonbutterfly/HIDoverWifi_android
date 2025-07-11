@@ -37,7 +37,7 @@ class KeyboardActivity : AppCompatActivity() {
 		}
 		
 		loadKeyboardLayout()
-		updateKeyText(false, false)
+		updateKeyText()
 	}
 	
 	private fun loadKeyboardLayout() {
@@ -64,7 +64,7 @@ class KeyboardActivity : AppCompatActivity() {
 			}
 	}
 	
-	private fun updateKeyText(shift: Boolean, altGr: Boolean) {
+	private fun updateKeyText(shift: Boolean = false, altGr: Boolean = false) {
 		keyboardLayout.forEach { id, text ->
 			val btn = findViewById<Button>(id)
 			text?.also {

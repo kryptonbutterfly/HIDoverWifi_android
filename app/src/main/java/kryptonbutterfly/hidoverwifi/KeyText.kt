@@ -7,7 +7,7 @@ data class KeyText(
 	val upperGr: String? = null,
 	val text: String = lower,
 ) {
-	public fun apply(shift: Boolean, altGr: Boolean): String {
+	fun apply(shift: Boolean, altGr: Boolean): String {
 		return if (shift)
 			if (altGr)
 				upperGr?:upper
