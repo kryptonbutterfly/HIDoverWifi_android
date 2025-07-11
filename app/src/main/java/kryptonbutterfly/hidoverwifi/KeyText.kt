@@ -8,14 +8,15 @@ data class KeyText(
 	val text: String = lower,
 ) {
 	public fun apply(shift: Boolean, altGr: Boolean): String {
-		if (shift) {
-			if (altGr && upperGr != null)
-				return upperGr
-			return upper
-		} else {
-			if (altGr && gr != null)
-				return gr
-			return lower
-		}
+		return if (shift)
+			if (altGr)
+				upperGr?:upper
+			else
+				upper
+		else
+			if (altGr)
+				gr?:lower
+			else
+				lower
 	}
 }
