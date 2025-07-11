@@ -2,22 +2,30 @@ package kryptonbutterfly.hidoverwifi.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.widget.Button
 import android.widget.ToggleButton
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import kryptonbutterfly.hidoverwifi.Constants.KEY_MAP
+import kryptonbutterfly.hidoverwifi.Constants.GSON
+import kryptonbutterfly.hidoverwifi.Constants.TRACKPAD
+import kryptonbutterfly.hidoverwifi.KeyText
 import kryptonbutterfly.hidoverwifi.R
 import kryptonbutterfly.hidoverwifi.dto.ActionKeyboardKey
 import kryptonbutterfly.hidoverwifi.dto.ActionKeyboardType
+import kryptonbutterfly.hidoverwifi.dto.ActionTextTyped
 import kryptonbutterfly.hidoverwifi.network.Network
 
 class KeyboardActivity : AppCompatActivity() {
 	private val settingsResult =
 		registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {}
+	
+	private val keyboardLayout: HashMap<Int, KeyText?> = HashMap()
 	
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -27,11 +35,53 @@ class KeyboardActivity : AppCompatActivity() {
 			v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
 			insets
 		}
+		
+		loadKeyboardLayout()
+		updateKeyText(false, false)
+	}
+	
+	private fun loadKeyboardLayout() {
+		val json = resources.openRawResource(R.raw.keyboard_de_de)
+			.bufferedReader()
+			.use { it.readText() }
+		GSON.fromJson<HashMap<String, ArrayList<String>>>(json, HashMap::class.java)
+			.forEach { name, data ->
+				val id = resources.getIdentifier(name, "id", packageName)
+				val keyText: KeyText? = when(val size = data.size) {
+					0 -> null
+					2 -> KeyText(data[0], data[1])
+					3 -> KeyText(data[0], data[1], data[2])
+					4 -> KeyText(data[0], data[1], data[2], data[3])
+					5 -> KeyText(data[0], data[1], data[2], data[3], data[4])
+					else -> {
+						if (size < 2)
+							throw IllegalArgumentException("'$name' doesn't have enough values")
+						Log.w(TRACKPAD, "Expected between 2 and 5 arguments got $size instead. Ignoring superfluous args.")
+						KeyText(data[0], data[1], data[2], data[3], data[4])
+					}
+				}
+				keyboardLayout.put(id, keyText)
+			}
 	}
 	
 	private fun updateKeyText(shift: Boolean, altGr: Boolean) {
-		KEY_MAP.forEach { id, text ->
-			findViewById<Button>(id).text = text.apply(shift, altGr)
+		keyboardLayout.forEach { id, text ->
+			val btn = findViewById<Button>(id)
+			text?.also {
+				btn.text = it.apply(shift, altGr)
+				btn.visibility = VISIBLE
+			}?:run{
+				btn.visibility = INVISIBLE
+			}
+		}
+	}
+	
+	fun onKeyTyped(view: View) {
+		val btn = view as Button
+		keyboardLayout.get(btn.id)?.also { keyText ->
+			Network.event(this, ActionTextTyped(keyText.text))
+		}?:run {
+			Log.i(TRACKPAD, "No key defined in keyboardLayout for button ${btn.id}.")
 		}
 	}
 	
@@ -174,198 +224,6 @@ class KeyboardActivity : AppCompatActivity() {
 	
 	fun onTabClicked(@Suppress("UNUSED_PARAMETER") view: View) {
 		Network.event(this, ActionKeyboardType("TAB"))
-	}
-	
-	fun onCircumflex(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("CIRCUMFLEX"))
-	}
-	
-	fun onNum1(@Suppress("UNUSED_PARAMETER") view: View ) {
-		Network.event(this, ActionKeyboardType("DIG1"))
-	}
-	
-	fun onNum2(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("DIG2"))
-	}
-	
-	fun onNum3(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("DIG3"))
-	}
-	
-	fun onNum4(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("DIG4"))
-	}
-	
-	fun onNum5(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("DIG5"))
-	}
-	
-	fun onNum6(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("DIG6"))
-	}
-	
-	fun onNum7(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("DIG7"))
-	}
-	
-	fun onNum8(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("DIG8"))
-	}
-	
-	fun onNum9(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("DIG9"))
-	}
-	
-	fun onNum0(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("DIG0"))
-	}
-	
-	fun onMinus(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("MINUS"))
-	}
-	
-	fun onSharpS(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("SHARP_S"))
-	}
-	
-	fun onQ(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("Q"))
-	}
-	
-	fun onW(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("W"))
-	}
-	
-	fun onE(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("E"))
-	}
-	
-	fun onR(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("R"))
-	}
-	
-	fun onT(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("T"))
-	}
-	
-	fun onY(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("Y"))
-	}
-	
-	fun onU(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("U"))
-	}
-	
-	fun onI(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("I"))
-	}
-	
-	fun onO(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("O"))
-	}
-	
-	fun onP(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("P"))
-	}
-	
-	fun onA(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("A"))
-	}
-	
-	fun onS(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("S"))
-	}
-	
-	fun onD(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("D"))
-	}
-	
-	fun onF(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("F"))
-	}
-	
-	fun onG(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("G"))
-	}
-	
-	fun onH(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("H"))
-	}
-	
-	fun onJ(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("J"))
-	}
-	
-	fun onK(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("K"))
-	}
-	
-	fun onL(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("L"))
-	}
-	
-	fun onZ(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("Z"))
-	}
-	
-	fun onX(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("X"))
-	}
-	
-	fun onC(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("C"))
-	}
-	
-	fun onV(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("V"))
-	}
-	
-	fun onB(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("B"))
-	}
-	
-	fun onN(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("N"))
-	}
-	
-	fun onM(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("M"))
-	}
-	
-	fun onAcuteAccent(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("ACUTE_ACCENT"))
-	}
-	
-	fun onUE(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("Ü"))
-	}
-	
-	fun onPlus(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("PLUS"))
-	}
-	
-	fun onOE(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("Ö"))
-	}
-	
-	fun onAE(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("Ä"))
-	}
-	
-	fun onComma(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("COMMA"))
-	}
-
-	fun onDot(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("DOT"))
-	}
-	
-	fun onHash(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("HASH"))
-	}
-	
-	fun onLess(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("LESS"))
 	}
 	
 	fun onMouseClick(@Suppress("UNUSED_PARAMETER") view: View) {

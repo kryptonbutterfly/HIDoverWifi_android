@@ -4,7 +4,8 @@ data class KeyText(
 	val lower: String,
 	val upper: String,
 	val gr: String? = null,
-	val upperGr: String? = null
+	val upperGr: String? = null,
+	val text: String = lower,
 ) {
 	public fun apply(shift: Boolean, altGr: Boolean): String {
 		if (shift) {

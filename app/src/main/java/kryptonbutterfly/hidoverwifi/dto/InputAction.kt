@@ -12,7 +12,8 @@ private enum class Action {
 	DOUBLE,
 	SCROLL,
 	KEY,
-	TYPE
+	TYPE,
+	TEXT
 }
 
 sealed class InputAction: Serializable {
@@ -85,5 +86,12 @@ data class ActionKeyboardType(val key: String): InputAction() {
 	override fun write(oStream: DataOutputStream) {
 		oStream.writeUTF(Action.TYPE.name)
 		oStream.writeUTF(key)
+	}
+}
+
+data class ActionTextTyped(val text: String): InputAction() {
+	override fun write(oStream: DataOutputStream) {
+		oStream.writeUTF(Action.TEXT.name)
+		oStream.writeUTF(text)
 	}
 }

@@ -434,9 +434,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="1"
-                android:onClick="onCircumflex"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="^"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
 
@@ -446,9 +445,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="1"
-                android:onClick="onNum1"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="1"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
 
@@ -458,9 +456,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="1"
-                android:onClick="onNum2"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="2"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
 
@@ -470,9 +467,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="1"
-                android:onClick="onNum3"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="3"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
 
@@ -482,9 +478,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="1"
-                android:onClick="onNum4"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="4"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
 
@@ -494,9 +489,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="1"
-                android:onClick="onNum5"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="5"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
 
@@ -506,9 +500,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="1"
-                android:onClick="onNum6"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="6"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
 
@@ -518,9 +511,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="1"
-                android:onClick="onNum7"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="7"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
 
@@ -530,9 +522,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="1"
-                android:onClick="onNum8"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="8"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
 
@@ -542,9 +533,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="1"
-                android:onClick="onNum9"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="9"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
 
@@ -554,9 +544,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="1"
-                android:onClick="onNum0"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="0"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
 
@@ -566,9 +555,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="1"
-                android:onClick="onSharpS"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="ẞ"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
 
@@ -578,9 +566,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="1"
-                android:onClick="onAcuteAccent"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="´"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
 
@@ -635,9 +622,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onQ"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="q"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
@@ -648,9 +634,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onW"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="w"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
@@ -661,9 +646,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onE"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="e"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
@@ -674,9 +658,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onR"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="r"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
@@ -687,9 +670,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onT"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="t"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
@@ -700,9 +682,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onZ"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="z"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
@@ -713,9 +694,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onU"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="u"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
@@ -726,9 +706,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onI"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="i"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
@@ -739,9 +718,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onO"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="o"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
@@ -752,9 +730,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onP"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="p"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
@@ -765,9 +742,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onUE"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="ü"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
@@ -778,9 +754,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onPlus"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="+"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
@@ -810,9 +785,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onA"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="a"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
@@ -823,9 +797,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onS"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="s"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
@@ -836,9 +809,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onD"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="d"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
@@ -849,9 +821,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onF"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="f"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
@@ -862,9 +833,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onG"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="g"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
@@ -875,9 +845,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onH"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="h"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
@@ -888,9 +857,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onJ"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="j"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
@@ -901,9 +869,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onK"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="k"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
@@ -914,9 +881,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onL"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="l"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
@@ -927,9 +893,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onOE"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="ö"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
@@ -940,9 +905,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onAE"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="ä"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
@@ -953,9 +917,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onHash"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="#"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
@@ -991,9 +954,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onLess"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="&#060;"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
@@ -1004,9 +966,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onY"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="y"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
@@ -1017,9 +978,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onX"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="x"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TooManyViews,TouchTargetSizeCheck" />
@@ -1030,9 +990,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onC"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="c"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
@@ -1043,9 +1002,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onV"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="v"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
@@ -1056,9 +1014,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onB"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="b"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
@@ -1069,9 +1026,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onN"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="n"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
@@ -1082,9 +1038,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onM"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="m"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
@@ -1095,9 +1050,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onComma"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text=","
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TooManyViews,TouchTargetSizeCheck" />
@@ -1108,9 +1062,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onDot"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="."
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
@@ -1121,9 +1074,8 @@
                 android:layout_height="40dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
-                android:onClick="onMinus"
+                android:onClick="onKeyTyped"
                 android:padding="0dp"
-                android:text="-"
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
