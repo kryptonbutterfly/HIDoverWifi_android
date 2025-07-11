@@ -43,25 +43,55 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/keyboard" />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/buttonBar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="?attr/backgroundColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/buttonTab2"
+            android:layout_width="56dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/rounded_button"
+            android:contentDescription="@string/button_tab"
+            android:onClick="onTabClicked"
+            android:padding="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/tab"
+            tools:ignore="TouchTargetSizeCheck" />
+
         <ToggleButton
             android:id="@+id/buttonShift"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_margin="4dp"
+            android:drawableEnd="@drawable/shift"
             android:onClick="onShiftClick"
-            android:textOff="@string/toggle_btn_shift"
-            android:textOn="@string/toggle_btn_shift"
+            android:paddingStart="-4dp"
+            android:paddingEnd="-4dp"
+            android:textOff="@string/EMPTY"
+            android:textOn="@string/EMPTY"
             android:textSize="12sp"
-            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/settingsButton"
+            app:layout_constraintStart_toEndOf="@+id/buttonTab2"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="TouchTargetSizeCheck" />
 
         <ToggleButton
             android:id="@+id/buttonCtrl"
             android:layout_width="54dp"
-            android:layout_height="36dp"
+            android:layout_height="40dp"
             android:layout_margin="4dp"
             android:checked="false"
             android:onClick="onCtrlClick"
@@ -77,7 +107,7 @@
         <ToggleButton
             android:id="@+id/buttonSuper2"
             android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_height="40dp"
             android:layout_margin="4dp"
             android:checked="false"
             android:onClick="onSuperClick"
@@ -93,8 +123,9 @@
         <ToggleButton
             android:id="@+id/buttonAlt2"
             android:layout_width="45dp"
-            android:layout_height="36dp"
+            android:layout_height="40dp"
             android:layout_margin="4dp"
+            android:layout_marginStart="5dp"
             android:checked="false"
             android:onClick="onAltClick"
             android:textOff="@string/toggle_btn_alt"
@@ -109,7 +140,7 @@
         <ToggleButton
             android:id="@+id/buttonAltGr2"
             android:layout_width="62dp"
-            android:layout_height="36dp"
+            android:layout_height="40dp"
             android:layout_margin="4dp"
             android:checked="false"
             android:onClick="onAltGrClick"
@@ -121,7 +152,6 @@
             app:layout_constraintStart_toEndOf="@+id/buttonAlt2"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="TouchTargetSizeCheck" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -135,36 +165,36 @@
         android:clickable="true"
         android:contentDescription="@string/touch_pad"
         android:longClickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/buttonBar"
         app:layout_constraintEnd_toStartOf="@+id/touch_pad_scroll_vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mousepadTopBar" />
+        app:layout_constraintTop_toBottomOf="@id/mousepadTopBar">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/touch_pad_scroll_vertical"
-        android:layout_width="40dp"
+        android:layout_width="56dp"
         android:layout_height="0dp"
         android:layout_marginVertical="16dp"
-        android:layout_marginBottom="16dp"
         android:clickable="true"
         android:paddingStart="20dp"
         android:paddingEnd="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/buttonBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/touch_pad"
         app:layout_constraintTop_toBottomOf="@id/mousepadTopBar"
         tools:ignore="TouchTargetSizeCheck">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+        <View
+            android:id="@+id/view"
+            android:layout_width="8dp"
+            android:layout_height="match_parent"
             android:background="@drawable/rounded_corner"
             android:contentDescription="@string/scroll_bar_vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,6 +12,8 @@
         android:id="@+id/scrollView3"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginBottom="4dp"
+        android:fillViewport="true"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +27,7 @@
                 android:id="@+id/keyboardTopBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?android:attr/colorBackground"
+                android:background="?attr/backgroundColor"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -59,12 +61,23 @@
                     app:srcCompat="@drawable/mouse" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <Space
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/keyboardTopBar">
+                app:layout_constraintTop_toBottomOf="@+id/keyboardTopBar" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toTopOf="@id/keyboard_line0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
                 <ImageView
                     android:id="@+id/buttonPictureUp"
@@ -122,9 +135,9 @@
                     android:layout_marginBottom="4dp"
                     android:background="@drawable/rounded_button"
                     android:contentDescription="@string/button_end"
+                    android:letterSpacing="0"
                     android:onClick="onEndClick"
                     android:padding="0dp"
-                    android:letterSpacing="0"
                     android:text="@string/button_end"
                     android:textAllCaps="false"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -140,9 +153,9 @@
                     android:layout_marginBottom="4dp"
                     android:background="@drawable/rounded_button"
                     android:contentDescription="@string/button_del"
+                    android:letterSpacing="0"
                     android:onClick="onDelClick"
                     android:padding="0dp"
-                    android:letterSpacing="0"
                     android:text="@string/button_del"
                     android:textAllCaps="false"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -227,6 +240,186 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <LinearLayout
+                android:id="@+id/keyboard_line0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <Button
+                    android:id="@+id/keyboard_button_Esc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_weight="1"
+                    android:letterSpacing="-0.08"
+                    android:onClick="onEscClick"
+                    android:padding="0dp"
+                    android:text="Esc"
+                    android:textAllCaps="false"
+                    android:textSize="16sp"
+                    tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+                <Button
+                    android:id="@+id/keyboard_button_F1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_weight="1"
+                    android:letterSpacing="-0.08"
+                    android:onClick="onF1Click"
+                    android:padding="0dp"
+                    android:text="F1"
+                    android:textSize="16sp"
+                    tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+                <Button
+                    android:id="@+id/keyboard_button_F2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_weight="1"
+                    android:letterSpacing="-0.08"
+                    android:onClick="onF2Click"
+                    android:padding="0dp"
+                    android:text="F2"
+                    android:textSize="16sp"
+                    tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+                <Button
+                    android:id="@+id/keyboard_button_F3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_weight="1"
+                    android:letterSpacing="-0.08"
+                    android:onClick="onF3Click"
+                    android:padding="0dp"
+                    android:text="F3"
+                    android:textSize="16sp"
+                    tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+                <Button
+                    android:id="@+id/keyboard_button_F4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_weight="1"
+                    android:letterSpacing="-0.08"
+                    android:onClick="onF4Click"
+                    android:padding="0dp"
+                    android:text="F4"
+                    android:textSize="16sp"
+                    tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+                <Button
+                    android:id="@+id/keyboard_button_F5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_weight="1"
+                    android:letterSpacing="-0.08"
+                    android:onClick="onF5Click"
+                    android:padding="0dp"
+                    android:text="F5"
+                    android:textSize="16sp"
+                    tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+                <Button
+                    android:id="@+id/keyboard_button_F6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_weight="1"
+                    android:letterSpacing="-0.08"
+                    android:onClick="onF6Click"
+                    android:padding="0dp"
+                    android:text="F6"
+                    android:textSize="16sp"
+                    tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+                <Button
+                    android:id="@+id/keyboard_button_F7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_weight="1"
+                    android:letterSpacing="-0.08"
+                    android:onClick="onF7Click"
+                    android:padding="0dp"
+                    android:text="F7"
+                    android:textSize="16sp"
+                    tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+                <Button
+                    android:id="@+id/keyboard_button_F8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_weight="1"
+                    android:letterSpacing="-0.08"
+                    android:onClick="onF8Click"
+                    android:padding="0dp"
+                    android:text="F8"
+                    android:textSize="16sp"
+                    tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+                <Button
+                    android:id="@+id/keyboard_button_F9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_weight="1"
+                    android:letterSpacing="-0.08"
+                    android:onClick="onF9Click"
+                    android:padding="0dp"
+                    android:text="F9"
+                    android:textSize="16sp"
+                    tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+                <Button
+                    android:id="@+id/keyboard_button_F10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_weight="1"
+                    android:letterSpacing="-0.08"
+                    android:onClick="onF10Click"
+                    android:padding="0dp"
+                    android:text="F10"
+                    android:textSize="16sp"
+                    tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+                <Button
+                    android:id="@+id/keyboard_button_F11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_weight="1"
+                    android:letterSpacing="-0.08"
+                    android:onClick="onF11Click"
+                    android:padding="0dp"
+                    android:text="F11"
+                    android:textSize="16sp"
+                    tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+                <Button
+                    android:id="@+id/keyboard_button_F12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_weight="1"
+                    android:letterSpacing="-0.08"
+                    android:onClick="onF12Click"
+                    android:padding="0dp"
+                    android:text="F12"
+                    android:textSize="16sp"
+                    tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+            </LinearLayout>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
@@ -234,189 +427,10 @@
         android:id="@+id/constraintLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="?attr/colorSecondary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
-
-        <LinearLayout
-            android:id="@+id/keyboard_line0"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <Button
-                android:id="@+id/keyboard_button_Esc"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginHorizontal="2dp"
-                android:layout_weight="1"
-                android:letterSpacing="-0.08"
-                android:onClick="onEscClick"
-                android:padding="0dp"
-                android:text="Esc"
-                android:textAllCaps="false"
-                android:textSize="16sp"
-                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
-
-            <Button
-                android:id="@+id/keyboard_button_F1"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginHorizontal="2dp"
-                android:layout_weight="1"
-                android:letterSpacing="-0.08"
-                android:onClick="onF1Click"
-                android:padding="0dp"
-                android:text="F1"
-                android:textSize="16sp"
-                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
-
-            <Button
-                android:id="@+id/keyboard_button_F2"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginHorizontal="2dp"
-                android:layout_weight="1"
-                android:letterSpacing="-0.08"
-                android:onClick="onF2Click"
-                android:padding="0dp"
-                android:text="F2"
-                android:textSize="16sp"
-                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
-
-            <Button
-                android:id="@+id/keyboard_button_F3"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginHorizontal="2dp"
-                android:layout_weight="1"
-                android:letterSpacing="-0.08"
-                android:onClick="onF3Click"
-                android:padding="0dp"
-                android:text="F3"
-                android:textSize="16sp"
-                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
-
-            <Button
-                android:id="@+id/keyboard_button_F4"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginHorizontal="2dp"
-                android:layout_weight="1"
-                android:letterSpacing="-0.08"
-                android:onClick="onF4Click"
-                android:padding="0dp"
-                android:text="F4"
-                android:textSize="16sp"
-                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
-
-            <Button
-                android:id="@+id/keyboard_button_F5"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginHorizontal="2dp"
-                android:layout_weight="1"
-                android:letterSpacing="-0.08"
-                android:onClick="onF5Click"
-                android:padding="0dp"
-                android:text="F5"
-                android:textSize="16sp"
-                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
-
-            <Button
-                android:id="@+id/keyboard_button_F6"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginHorizontal="2dp"
-                android:layout_weight="1"
-                android:letterSpacing="-0.08"
-                android:onClick="onF6Click"
-                android:padding="0dp"
-                android:text="F6"
-                android:textSize="16sp"
-                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
-
-            <Button
-                android:id="@+id/keyboard_button_F7"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginHorizontal="2dp"
-                android:layout_weight="1"
-                android:letterSpacing="-0.08"
-                android:onClick="onF7Click"
-                android:padding="0dp"
-                android:text="F7"
-                android:textSize="16sp"
-                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
-
-            <Button
-                android:id="@+id/keyboard_button_F8"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginHorizontal="2dp"
-                android:layout_weight="1"
-                android:letterSpacing="-0.08"
-                android:onClick="onF8Click"
-                android:padding="0dp"
-                android:text="F8"
-                android:textSize="16sp"
-                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
-
-            <Button
-                android:id="@+id/keyboard_button_F9"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginHorizontal="2dp"
-                android:layout_weight="1"
-                android:letterSpacing="-0.08"
-                android:onClick="onF9Click"
-                android:padding="0dp"
-                android:text="F9"
-                android:textSize="16sp"
-                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
-
-            <Button
-                android:id="@+id/keyboard_button_F10"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginHorizontal="2dp"
-                android:layout_weight="1"
-                android:letterSpacing="-0.08"
-                android:onClick="onF10Click"
-                android:padding="0dp"
-                android:text="F10"
-                android:textSize="16sp"
-                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
-
-            <Button
-                android:id="@+id/keyboard_button_F11"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginHorizontal="2dp"
-                android:layout_weight="1"
-                android:letterSpacing="-0.08"
-                android:onClick="onF11Click"
-                android:padding="0dp"
-                android:text="F11"
-                android:textSize="16sp"
-                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
-
-            <Button
-                android:id="@+id/keyboard_button_F12"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginHorizontal="2dp"
-                android:layout_weight="1"
-                android:letterSpacing="-0.08"
-                android:onClick="onF12Click"
-                android:padding="0dp"
-                android:text="F12"
-                android:textSize="16sp"
-                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
-        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/keyboard_line1"
@@ -426,7 +440,7 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/keyboard_line0">
+            app:layout_constraintTop_toTopOf="parent">
 
             <Button
                 android:id="@+id/keyboard_button_circumflex_accent"
@@ -945,7 +959,6 @@
                 android:textOff="@string/EMPTY"
                 android:textOn="@string/EMPTY"
                 android:textSize="12sp"
-                android:textStyle="bold"
                 tools:ignore="TouchTargetSizeCheck" />
 
             <Button

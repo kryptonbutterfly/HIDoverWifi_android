@@ -22,6 +22,7 @@ import androidx.core.view.WindowInsetsCompat
 import kryptonbutterfly.hidoverwifi.Constants.TRACKPAD
 import kryptonbutterfly.hidoverwifi.R
 import kryptonbutterfly.hidoverwifi.dto.ActionKeyboardKey
+import kryptonbutterfly.hidoverwifi.dto.ActionKeyboardType
 import kryptonbutterfly.hidoverwifi.dto.ActionMouseButton
 import kryptonbutterfly.hidoverwifi.dto.ActionMouseClick
 import kryptonbutterfly.hidoverwifi.dto.ActionMouseDoubleClick
@@ -197,6 +198,10 @@ class MousePadActivity : AppCompatActivity() {
 	
 	fun onSettingsClick(@Suppress("UNUSED_PARAMETER") view: View) {
 		settingsResult.launch(Intent(this, PreferencesActivity::class.java))
+	}
+	
+	fun onTabClicked(@Suppress("UNUSED_PARAMETER") view: View) {
+		Network.event(this, ActionKeyboardType("TAB"))
 	}
 	
 	fun onShiftClick(@Suppress("UNUSED_PARAMETER") view: View) {
