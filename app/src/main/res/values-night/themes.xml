@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.HIDoverWifi" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/Gray80</item>
+        <item name="colorPrimaryVariant">@color/Gray90</item>
+        <item name="colorOnPrimary">@color/black</item>
+
+        <item name="colorSecondary">@color/Gray20</item>
+        <item name="colorSecondaryVariant">@color/Gray30</item>
+        <item name="colorOnSecondary">@color/Gray60</item>
+
+        <item name="android:windowBackground">@color/black</item>
+        <item name="backgroundColor">@color/Gray10</item>
+
+        <item name="android:statusBarColor">@color/Gray20</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+</resources>

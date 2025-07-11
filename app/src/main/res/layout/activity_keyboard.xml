@@ -1,0 +1,1217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="0dp"
+    android:paddingEnd="0dp"
+    tools:context=".ui.KeyboardActivity">
+
+    <ScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/keyboardTopBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?android:attr/colorBackground"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageButton
+                    android:id="@+id/settingsButton2"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="8dp"
+                    android:layout_marginStart="156dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:contentDescription="@string/settings"
+                    android:onClick="onSettingsClick"
+                    android:padding="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/dots" />
+
+                <ImageView
+                    android:id="@+id/buttonMouse"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="8dp"
+                    android:contentDescription="@string/button_description_keyboard"
+                    android:onClick="onMouseClick"
+                    android:padding="4dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/mouse" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/keyboardTopBar">
+
+                <ImageView
+                    android:id="@+id/buttonPictureUp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@drawable/rounded_button"
+                    android:contentDescription="@string/button_picture_up"
+                    android:onClick="onPageUpClick"
+                    android:padding="10dp"
+                    app:layout_constraintBottom_toTopOf="@+id/buttonPictureDown"
+                    app:layout_constraintEnd_toEndOf="@+id/buttonPictureDown"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/picture_up"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <ImageView
+                    android:id="@+id/buttonPictureDown"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="19dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@drawable/rounded_button"
+                    android:contentDescription="@string/button_picture_down"
+                    android:onClick="onPageDownClick"
+                    android:padding="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/buttonLeftArrow"
+                    app:srcCompat="@drawable/picture_down"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <Button
+                    android:id="@+id/buttonPos1"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@drawable/rounded_button"
+                    android:contentDescription="@string/button_pos1"
+                    android:letterSpacing="0"
+                    android:onClick="onPos1Click"
+                    android:padding="0dp"
+                    android:text="@string/button_pos1"
+                    android:textAllCaps="false"
+                    app:layout_constraintBottom_toTopOf="@id/buttonEnd"
+                    app:layout_constraintEnd_toStartOf="@id/buttonPictureUp"
+                    tools:ignore="TouchTargetSizeCheck,TextSizeCheck" />
+
+                <Button
+                    android:id="@+id/buttonEnd"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@drawable/rounded_button"
+                    android:contentDescription="@string/button_end"
+                    android:onClick="onEndClick"
+                    android:padding="0dp"
+                    android:letterSpacing="0"
+                    android:text="@string/button_end"
+                    android:textAllCaps="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/buttonPictureDown"
+                    app:srcCompat="@drawable/picture_down"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <Button
+                    android:id="@+id/buttonDel"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@drawable/rounded_button"
+                    android:contentDescription="@string/button_del"
+                    android:onClick="onDelClick"
+                    android:padding="0dp"
+                    android:letterSpacing="0"
+                    android:text="@string/button_del"
+                    android:textAllCaps="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/buttonEnd"
+                    app:srcCompat="@drawable/picture_down"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <Button
+                    android:id="@+id/buttonInsert"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@drawable/rounded_button"
+                    android:contentDescription="@string/button_insert"
+                    android:letterSpacing="0"
+                    android:onClick="onInsertClick"
+                    android:padding="0dp"
+                    android:text="@string/button_insert"
+                    android:textAllCaps="false"
+                    app:layout_constraintBottom_toTopOf="@id/buttonDel"
+                    app:layout_constraintEnd_toStartOf="@id/buttonPos1"
+                    tools:ignore="TouchTargetSizeCheck,TextSizeCheck" />
+
+                <ImageView
+                    android:id="@+id/buttonUpArrow"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/rounded_button"
+                    android:contentDescription="@string/toggle_btn_arrow_up"
+                    android:onClick="onUpArrowClick"
+                    android:padding="10dp"
+                    app:layout_constraintBottom_toTopOf="@+id/buttonDownArrow"
+                    app:layout_constraintEnd_toStartOf="@+id/buttonRightArrow"
+                    app:srcCompat="@drawable/up_arrow"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <ImageView
+                    android:id="@+id/buttonDownArrow"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@drawable/rounded_button"
+                    android:contentDescription="@string/toggle_btn_arrow_down"
+                    android:onClick="onDownArrowClick"
+                    android:padding="9dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/buttonRightArrow"
+                    app:srcCompat="@drawable/down_arrow"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <ImageView
+                    android:id="@+id/buttonLeftArrow"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:background="@drawable/rounded_button"
+                    android:contentDescription="@string/toggle_btn_arrow_left"
+                    android:onClick="onLeftArrowClick"
+                    android:padding="9dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/buttonDownArrow"
+                    app:srcCompat="@drawable/left_arrow"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <ImageView
+                    android:id="@+id/buttonRightArrow"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/rounded_button"
+                    android:contentDescription="@string/toggle_btn_arrow_right"
+                    android:onClick="onRightArrowClick"
+                    android:padding="9dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:srcCompat="@drawable/right_arrow"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:id="@+id/keyboard_line0"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/keyboard_button_Esc"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="1"
+                android:letterSpacing="-0.08"
+                android:onClick="onEscClick"
+                android:padding="0dp"
+                android:text="Esc"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_F1"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="1"
+                android:letterSpacing="-0.08"
+                android:onClick="onF1Click"
+                android:padding="0dp"
+                android:text="F1"
+                android:textSize="16sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_F2"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="1"
+                android:letterSpacing="-0.08"
+                android:onClick="onF2Click"
+                android:padding="0dp"
+                android:text="F2"
+                android:textSize="16sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_F3"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="1"
+                android:letterSpacing="-0.08"
+                android:onClick="onF3Click"
+                android:padding="0dp"
+                android:text="F3"
+                android:textSize="16sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_F4"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="1"
+                android:letterSpacing="-0.08"
+                android:onClick="onF4Click"
+                android:padding="0dp"
+                android:text="F4"
+                android:textSize="16sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_F5"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="1"
+                android:letterSpacing="-0.08"
+                android:onClick="onF5Click"
+                android:padding="0dp"
+                android:text="F5"
+                android:textSize="16sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_F6"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="1"
+                android:letterSpacing="-0.08"
+                android:onClick="onF6Click"
+                android:padding="0dp"
+                android:text="F6"
+                android:textSize="16sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_F7"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="1"
+                android:letterSpacing="-0.08"
+                android:onClick="onF7Click"
+                android:padding="0dp"
+                android:text="F7"
+                android:textSize="16sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_F8"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="1"
+                android:letterSpacing="-0.08"
+                android:onClick="onF8Click"
+                android:padding="0dp"
+                android:text="F8"
+                android:textSize="16sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_F9"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="1"
+                android:letterSpacing="-0.08"
+                android:onClick="onF9Click"
+                android:padding="0dp"
+                android:text="F9"
+                android:textSize="16sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_F10"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="1"
+                android:letterSpacing="-0.08"
+                android:onClick="onF10Click"
+                android:padding="0dp"
+                android:text="F10"
+                android:textSize="16sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_F11"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="1"
+                android:letterSpacing="-0.08"
+                android:onClick="onF11Click"
+                android:padding="0dp"
+                android:text="F11"
+                android:textSize="16sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_F12"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="1"
+                android:letterSpacing="-0.08"
+                android:onClick="onF12Click"
+                android:padding="0dp"
+                android:text="F12"
+                android:textSize="16sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/keyboard_line1"
+            style="?android:attr/buttonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/keyboard_line0">
+
+            <Button
+                android:id="@+id/keyboard_button_circumflex_accent"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="1"
+                android:onClick="onCircumflex"
+                android:padding="0dp"
+                android:text="^"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_1"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="1"
+                android:onClick="onNum1"
+                android:padding="0dp"
+                android:text="1"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_2"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="1"
+                android:onClick="onNum2"
+                android:padding="0dp"
+                android:text="2"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_3"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="1"
+                android:onClick="onNum3"
+                android:padding="0dp"
+                android:text="3"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_4"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="1"
+                android:onClick="onNum4"
+                android:padding="0dp"
+                android:text="4"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_5"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="1"
+                android:onClick="onNum5"
+                android:padding="0dp"
+                android:text="5"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_6"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="1"
+                android:onClick="onNum6"
+                android:padding="0dp"
+                android:text="6"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_7"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="1"
+                android:onClick="onNum7"
+                android:padding="0dp"
+                android:text="7"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_8"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="1"
+                android:onClick="onNum8"
+                android:padding="0dp"
+                android:text="8"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_9"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="1"
+                android:onClick="onNum9"
+                android:padding="0dp"
+                android:text="9"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_0"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="1"
+                android:onClick="onNum0"
+                android:padding="0dp"
+                android:text="0"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_sharp_s"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="1"
+                android:onClick="onSharpS"
+                android:padding="0dp"
+                android:text="ẞ"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_acute_accent"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="1"
+                android:onClick="onAcuteAccent"
+                android:padding="0dp"
+                android:text="´"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <ImageView
+                android:id="@+id/keyboard_button_backspace"
+                android:layout_width="32dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="6dp"
+                android:background="@drawable/rounded_button"
+                android:contentDescription="@string/keyboard_button_backspace"
+                android:onClick="onBackSpaceClick"
+                android:padding="4dp"
+                app:layout_constraintEnd_toStartOf="@+id/keyboard_button_q"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/backspace"
+                tools:ignore="TouchTargetSizeCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/keyboard_line2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/keyboard_line1">
+
+            <ImageView
+                android:id="@+id/buttonTab"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="6dp"
+                android:layout_weight="2"
+                android:background="@drawable/rounded_button"
+                android:contentDescription="@string/button_tab"
+                android:onClick="onTabClicked"
+                android:padding="4dp"
+                app:layout_constraintEnd_toStartOf="@+id/keyboard_button_q"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/tab"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_q"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onQ"
+                android:padding="0dp"
+                android:text="q"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_w"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onW"
+                android:padding="0dp"
+                android:text="w"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_e"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onE"
+                android:padding="0dp"
+                android:text="e"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_r"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onR"
+                android:padding="0dp"
+                android:text="r"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_t"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onT"
+                android:padding="0dp"
+                android:text="t"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_z"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onZ"
+                android:padding="0dp"
+                android:text="z"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_u"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onU"
+                android:padding="0dp"
+                android:text="u"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_i"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onI"
+                android:padding="0dp"
+                android:text="i"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_o"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onO"
+                android:padding="0dp"
+                android:text="o"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_p"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onP"
+                android:padding="0dp"
+                android:text="p"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_ü"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onUE"
+                android:padding="0dp"
+                android:text="ü"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_plus"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onPlus"
+                android:padding="0dp"
+                android:text="+"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/keyboard_line3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/keyboard_line2">
+
+            <Button
+                style="@null"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="1.5"
+                android:visibility="invisible" />
+
+            <Button
+                android:id="@+id/keyboard_button_a"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onA"
+                android:padding="0dp"
+                android:text="a"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_s"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onS"
+                android:padding="0dp"
+                android:text="s"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_d"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onD"
+                android:padding="0dp"
+                android:text="d"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_f"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onF"
+                android:padding="0dp"
+                android:text="f"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_g"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onG"
+                android:padding="0dp"
+                android:text="g"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_h"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onH"
+                android:padding="0dp"
+                android:text="h"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_j"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onJ"
+                android:padding="0dp"
+                android:text="j"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_k"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onK"
+                android:padding="0dp"
+                android:text="k"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_l"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onL"
+                android:padding="0dp"
+                android:text="l"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_ö"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onOE"
+                android:padding="0dp"
+                android:text="ö"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_ä"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onAE"
+                android:padding="0dp"
+                android:text="ä"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_hash"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onHash"
+                android:padding="0dp"
+                android:text="#"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/keyboard_line4"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/keyboard_line3">
+
+            <ToggleButton
+                android:id="@+id/buttonShift2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/shift"
+                android:onClick="onShiftClick"
+                android:paddingHorizontal="6dp"
+                android:textOff="@string/EMPTY"
+                android:textOn="@string/EMPTY"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_less"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onLess"
+                android:padding="0dp"
+                android:text="&#060;"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_y"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onY"
+                android:padding="0dp"
+                android:text="y"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_x"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onX"
+                android:padding="0dp"
+                android:text="x"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TooManyViews,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_c"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onC"
+                android:padding="0dp"
+                android:text="c"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_v"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onV"
+                android:padding="0dp"
+                android:text="v"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_b"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onB"
+                android:padding="0dp"
+                android:text="b"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_n"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onN"
+                android:padding="0dp"
+                android:text="n"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_m"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onM"
+                android:padding="0dp"
+                android:text="m"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_comma"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onComma"
+                android:padding="0dp"
+                android:text=","
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TooManyViews,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_dot"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onDot"
+                android:padding="0dp"
+                android:text="."
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+
+            <Button
+                android:id="@+id/keyboard_button_minus"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="2"
+                android:onClick="onMinus"
+                android:padding="0dp"
+                android:text="-"
+                android:textAllCaps="false"
+                android:textSize="18sp"
+                tools:ignore="ButtonStyle,HardcodedText,TouchTargetSizeCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/keyboard_line5"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/keyboard_line4">
+
+            <ToggleButton
+                android:id="@+id/buttonCtrl2"
+                android:layout_width="48dp"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:onClick="onCtrlClick"
+                android:paddingStart="0dp"
+                android:paddingEnd="0dp"
+                android:textOff="@string/toggle_btn_ctrl"
+                android:textOn="@string/toggle_btn_ctrl"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ToggleButton
+                android:id="@+id/buttonSuper"
+                android:layout_width="48dp"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:checked="false"
+                android:onClick="onSuperClick"
+                android:textOff="@string/toggle_btn_super"
+                android:textOn="@string/toggle_btn_super"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ToggleButton
+                android:id="@+id/buttonAlt"
+                android:layout_width="52dp"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:checked="false"
+                android:onClick="onAltClick"
+                android:textOff="@string/toggle_btn_alt"
+                android:textOn="@string/toggle_btn_alt"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageButton
+                android:id="@+id/keyboard_button_space"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="2dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/keyboard_button_space"
+                android:onClick="onSpaceClick"
+                app:srcCompat="@null" />
+
+            <ToggleButton
+                android:id="@+id/buttonAltGr"
+                android:layout_width="62dp"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="2dp"
+                android:checked="false"
+                android:onClick="onAltGrClick"
+                android:textOff="@string/toggle_btn_altGr"
+                android:textOn="@string/toggle_btn_altGr"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:ignore="TouchTargetSizeCheck" />
+
+            <ImageButton
+                android:id="@+id/keyboard_button_enter"
+                android:layout_width="48dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="2dp"
+                android:contentDescription="@string/keyboard_button_enter"
+                android:onClick="onEnterClick"
+                app:srcCompat="@drawable/enter"
+                tools:ignore="TouchTargetSizeCheck" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
