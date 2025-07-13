@@ -11,6 +11,8 @@ data class Prefs(
 	@Expose var showScrollBar:Boolean = false,
 	@Expose var address: String = "",
 	@Expose var port: Int = 4620,
+	@Expose var certificate: String = "",
+	@Expose var certPassword: String = "",
 	@Expose var bind: Boolean = false,
 	@Expose var bindAddress: String = ""
 ) {

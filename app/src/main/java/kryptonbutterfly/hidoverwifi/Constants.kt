@@ -9,4 +9,8 @@ object Constants {
 		.create()
 	
 	const val TRACKPAD = "TRACKPAD"
+	
+	const val KEYSTORE_ALIAS = "HIDoverWifi"
+	
+	const val INTERNAL_KEYSTORE_NAME = "keystore.p12"
 }

@@ -12,7 +12,6 @@
         android:id="@+id/scrollView3"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="4dp"
         android:fillViewport="true"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
@@ -252,7 +251,7 @@
                 <Button
                     android:id="@+id/keyboard_button_Esc"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="44dp"
                     android:layout_marginHorizontal="2dp"
                     android:layout_weight="1"
                     android:letterSpacing="-0.08"
@@ -266,7 +265,7 @@
                 <Button
                     android:id="@+id/keyboard_button_F1"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="44dp"
                     android:layout_marginHorizontal="2dp"
                     android:layout_weight="1"
                     android:letterSpacing="-0.08"
@@ -279,7 +278,7 @@
                 <Button
                     android:id="@+id/keyboard_button_F2"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="44dp"
                     android:layout_marginHorizontal="2dp"
                     android:layout_weight="1"
                     android:letterSpacing="-0.08"
@@ -292,7 +291,7 @@
                 <Button
                     android:id="@+id/keyboard_button_F3"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="44dp"
                     android:layout_marginHorizontal="2dp"
                     android:layout_weight="1"
                     android:letterSpacing="-0.08"
@@ -305,7 +304,7 @@
                 <Button
                     android:id="@+id/keyboard_button_F4"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="44dp"
                     android:layout_marginHorizontal="2dp"
                     android:layout_weight="1"
                     android:letterSpacing="-0.08"
@@ -318,7 +317,7 @@
                 <Button
                     android:id="@+id/keyboard_button_F5"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="44dp"
                     android:layout_marginHorizontal="2dp"
                     android:layout_weight="1"
                     android:letterSpacing="-0.08"
@@ -331,7 +330,7 @@
                 <Button
                     android:id="@+id/keyboard_button_F6"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="44dp"
                     android:layout_marginHorizontal="2dp"
                     android:layout_weight="1"
                     android:letterSpacing="-0.08"
@@ -344,7 +343,7 @@
                 <Button
                     android:id="@+id/keyboard_button_F7"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="44dp"
                     android:layout_marginHorizontal="2dp"
                     android:layout_weight="1"
                     android:letterSpacing="-0.08"
@@ -357,7 +356,7 @@
                 <Button
                     android:id="@+id/keyboard_button_F8"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="44dp"
                     android:layout_marginHorizontal="2dp"
                     android:layout_weight="1"
                     android:letterSpacing="-0.08"
@@ -370,7 +369,7 @@
                 <Button
                     android:id="@+id/keyboard_button_F9"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="44dp"
                     android:layout_marginHorizontal="2dp"
                     android:layout_weight="1"
                     android:letterSpacing="-0.08"
@@ -383,7 +382,7 @@
                 <Button
                     android:id="@+id/keyboard_button_F10"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="44dp"
                     android:layout_marginHorizontal="2dp"
                     android:layout_weight="1"
                     android:letterSpacing="-0.08"
@@ -396,7 +395,7 @@
                 <Button
                     android:id="@+id/keyboard_button_F11"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="44dp"
                     android:layout_marginHorizontal="2dp"
                     android:layout_weight="1"
                     android:letterSpacing="-0.08"
@@ -409,7 +408,7 @@
                 <Button
                     android:id="@+id/keyboard_button_F12"
                     android:layout_width="wrap_content"
-                    android:layout_height="40dp"
+                    android:layout_height="44dp"
                     android:layout_marginHorizontal="2dp"
                     android:layout_weight="1"
                     android:letterSpacing="-0.08"
@@ -445,7 +444,7 @@
             <Button
                 android:id="@+id/keyboard_button_circumflex_accent"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="1"
                 android:onClick="onKeyTyped"
@@ -456,7 +455,7 @@
             <Button
                 android:id="@+id/keyboard_button_1"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="1"
                 android:onClick="onKeyTyped"
@@ -467,7 +466,7 @@
             <Button
                 android:id="@+id/keyboard_button_2"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="1"
                 android:onClick="onKeyTyped"
@@ -478,7 +477,7 @@
             <Button
                 android:id="@+id/keyboard_button_3"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="1"
                 android:onClick="onKeyTyped"
@@ -489,7 +488,7 @@
             <Button
                 android:id="@+id/keyboard_button_4"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="1"
                 android:onClick="onKeyTyped"
@@ -500,7 +499,7 @@
             <Button
                 android:id="@+id/keyboard_button_5"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="1"
                 android:onClick="onKeyTyped"
@@ -511,7 +510,7 @@
             <Button
                 android:id="@+id/keyboard_button_6"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="1"
                 android:onClick="onKeyTyped"
@@ -522,7 +521,7 @@
             <Button
                 android:id="@+id/keyboard_button_7"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="1"
                 android:onClick="onKeyTyped"
@@ -533,7 +532,7 @@
             <Button
                 android:id="@+id/keyboard_button_8"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="1"
                 android:onClick="onKeyTyped"
@@ -544,7 +543,7 @@
             <Button
                 android:id="@+id/keyboard_button_9"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="1"
                 android:onClick="onKeyTyped"
@@ -555,7 +554,7 @@
             <Button
                 android:id="@+id/keyboard_button_0"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="1"
                 android:onClick="onKeyTyped"
@@ -566,7 +565,7 @@
             <Button
                 android:id="@+id/keyboard_button_sharp_s"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="1"
                 android:onClick="onKeyTyped"
@@ -577,7 +576,7 @@
             <Button
                 android:id="@+id/keyboard_button_acute_accent"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="1"
                 android:onClick="onKeyTyped"
@@ -633,7 +632,7 @@
             <Button
                 android:id="@+id/keyboard_button_q"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"
@@ -645,7 +644,7 @@
             <Button
                 android:id="@+id/keyboard_button_w"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"
@@ -657,7 +656,7 @@
             <Button
                 android:id="@+id/keyboard_button_e"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"
@@ -669,7 +668,7 @@
             <Button
                 android:id="@+id/keyboard_button_r"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"
@@ -681,7 +680,7 @@
             <Button
                 android:id="@+id/keyboard_button_t"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"
@@ -693,7 +692,7 @@
             <Button
                 android:id="@+id/keyboard_button_z"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"
@@ -705,7 +704,7 @@
             <Button
                 android:id="@+id/keyboard_button_u"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"
@@ -717,7 +716,7 @@
             <Button
                 android:id="@+id/keyboard_button_i"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"
@@ -729,7 +728,7 @@
             <Button
                 android:id="@+id/keyboard_button_o"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"
@@ -741,7 +740,7 @@
             <Button
                 android:id="@+id/keyboard_button_p"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"
@@ -753,7 +752,7 @@
             <Button
                 android:id="@+id/keyboard_button_ü"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"
@@ -765,7 +764,7 @@
             <Button
                 android:id="@+id/keyboard_button_plus"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"
@@ -796,7 +795,7 @@
             <Button
                 android:id="@+id/keyboard_button_a"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"
@@ -808,7 +807,7 @@
             <Button
                 android:id="@+id/keyboard_button_s"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"
@@ -820,7 +819,7 @@
             <Button
                 android:id="@+id/keyboard_button_d"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"
@@ -832,7 +831,7 @@
             <Button
                 android:id="@+id/keyboard_button_f"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"
@@ -844,7 +843,7 @@
             <Button
                 android:id="@+id/keyboard_button_g"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"
@@ -856,7 +855,7 @@
             <Button
                 android:id="@+id/keyboard_button_h"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"
@@ -868,7 +867,7 @@
             <Button
                 android:id="@+id/keyboard_button_j"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"
@@ -880,7 +879,7 @@
             <Button
                 android:id="@+id/keyboard_button_k"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"
@@ -892,7 +891,7 @@
             <Button
                 android:id="@+id/keyboard_button_l"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"
@@ -904,7 +903,7 @@
             <Button
                 android:id="@+id/keyboard_button_ö"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"
@@ -916,7 +915,7 @@
             <Button
                 android:id="@+id/keyboard_button_ä"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"
@@ -928,7 +927,7 @@
             <Button
                 android:id="@+id/keyboard_button_hash"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"
@@ -964,7 +963,7 @@
             <Button
                 android:id="@+id/keyboard_button_less"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"
@@ -976,7 +975,7 @@
             <Button
                 android:id="@+id/keyboard_button_y"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"
@@ -988,7 +987,7 @@
             <Button
                 android:id="@+id/keyboard_button_x"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"
@@ -1000,7 +999,7 @@
             <Button
                 android:id="@+id/keyboard_button_c"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"
@@ -1012,7 +1011,7 @@
             <Button
                 android:id="@+id/keyboard_button_v"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"
@@ -1024,7 +1023,7 @@
             <Button
                 android:id="@+id/keyboard_button_b"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"
@@ -1036,7 +1035,7 @@
             <Button
                 android:id="@+id/keyboard_button_n"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"
@@ -1048,7 +1047,7 @@
             <Button
                 android:id="@+id/keyboard_button_m"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"
@@ -1060,7 +1059,7 @@
             <Button
                 android:id="@+id/keyboard_button_comma"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"
@@ -1072,7 +1071,7 @@
             <Button
                 android:id="@+id/keyboard_button_dot"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"
@@ -1084,7 +1083,7 @@
             <Button
                 android:id="@+id/keyboard_button_minus"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
+                android:layout_height="44dp"
                 android:layout_marginHorizontal="2dp"
                 android:layout_weight="2"
                 android:onClick="onKeyTyped"

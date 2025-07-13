@@ -32,4 +32,7 @@
     <string name="button_del">Del</string>
     <string name="button_insert">Insert</string>
     <string name="button_pos1">Pos1</string>
+    <string name="settings_certificate_file_hint">Certificate File</string>
+    <string name="settings_button_browse">browse</string>
+    <string name="settings_cert_passwd_hint">Certificate Password</string>
 </resources>
