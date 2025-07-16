@@ -4,19 +4,15 @@
     <string name="scroll_bar_vertical">Vertical scroll bar</string>
     <string name="settings">Settings</string>
     <string name="mouse_settings_title">Mouse</string>
-    <string name="showScrollBar">show scroll Bar</string>
     <string name="settings_network_address">Address</string>
-    <string name="settings_network_bind_address">bind Address</string>
     <string name="settings_switch_bind_interface">Bind to interface</string>
     <string name="network_settings_title">Network</string>
     <string name="settings_server_port">port</string>
     <string name="toggle_btn_ctrl">Ctrl</string>
-    <string name="toggle_btn_shift">⇧</string>
     <string name="toggle_btn_super">🐧</string>
     <string name="toggle_btn_alt">Alt</string>
     <string name="toggle_btn_altGr">AltGr</string>
     <string name="button_description_keyboard">Show keyboard</string>
-    <string name="keyboardDummyInput">Dummy input</string>
     <string name="toggle_btn_arrow_right">→</string>
     <string name="toggle_btn_arrow_down">↓</string>
     <string name="toggle_btn_arrow_left">←</string>
@@ -33,6 +29,7 @@
     <string name="button_insert">Insert</string>
     <string name="button_pos1">Pos1</string>
     <string name="settings_certificate_file_hint">Certificate File</string>
-    <string name="settings_button_browse">browse</string>
     <string name="settings_cert_passwd_hint">Certificate Password</string>
+    <string name="settings_hint_keepalive_interval">Keepalive interval in seconds</string>
+    <string name="settings_hint_server_password">server password</string>
 </resources>

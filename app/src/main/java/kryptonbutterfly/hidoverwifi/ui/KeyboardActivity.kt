@@ -78,7 +78,7 @@ class KeyboardActivity : AppCompatActivity() {
 	
 	fun onKeyTyped(view: View) {
 		val btn = view as Button
-		keyboardLayout.get(btn.id)?.also { keyText ->
+		keyboardLayout[btn.id]?.also { keyText ->
 			Network.event(this, ActionTextTyped(keyText.text))
 		}?:run {
 			Log.i(TRACKPAD, "No key defined in keyboardLayout for button ${btn.id}.")

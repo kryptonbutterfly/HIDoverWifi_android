@@ -58,8 +58,10 @@ class PreferencesActivity : AppCompatActivity() {
 		val switchScrollBar = findViewById<SwitchCompat>(R.id.switchScrollBar)
 		val textAddress = findViewById<TextInputEditText>(R.id.textAddress)
 		val pickerServerPort = findViewById<NumberPicker>(R.id.server_port)
+		val serverPassword = findViewById<TextInputEditText>(R.id.server_password)
 		val textCertLoc = findViewById<TextView>(R.id.textCertFile)
 		val textCertPW = findViewById<TextInputEditText>(R.id.certPwText)
+		val textKeepAliveInterval = findViewById<TextView>(R.id.keepAlive_interval)
 		bindSwitch = findViewById(R.id.switchBind)
 		spinnerBindAddress = findViewById(R.id.spinnerBindAddresses)
 		switchScrollBar.isChecked = prefs.showScrollBar
@@ -70,7 +72,9 @@ class PreferencesActivity : AppCompatActivity() {
 		if (prefs.certificate.isNotEmpty())
 			textCertLoc.text = prefs.certificate
 		
+		serverPassword.setText(prefs.serverPassword)
 		textCertPW.setText(prefs.certPassword)
+		textKeepAliveInterval.text = prefs.keepAliveInterval.toString()
 		bindSwitch.isChecked = prefs.bind
 		spinnerBindAddress.visibility = if (prefs.bind) VISIBLE else GONE
 		
@@ -83,6 +87,12 @@ class PreferencesActivity : AppCompatActivity() {
 				prefs.showScrollBar = switchScrollBar.isChecked
 				prefs.address = textAddress.text.toString()
 				prefs.port = pickerServerPort.value
+				prefs.serverPassword = serverPassword.text.toString()
+				
+				val keepalive = textKeepAliveInterval.text.toString()
+				if (keepalive.isNotBlank())
+					prefs.keepAliveInterval = Integer.parseInt(keepalive)
+				
 				prefs.certificate = textCertLoc.text.toString()
 				prefs.certPassword = textCertPW.text.toString()
 				prefs.bind = bindSwitch.isChecked

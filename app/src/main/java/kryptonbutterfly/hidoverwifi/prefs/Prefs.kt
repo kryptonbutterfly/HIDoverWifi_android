@@ -12,9 +12,11 @@ data class Prefs(
 	@Expose var address: String = "",
 	@Expose var port: Int = 4620,
 	@Expose var certificate: String = "",
-	@Expose var certPassword: String = "",
+	@Expose var certPassword: String = "public",
 	@Expose var bind: Boolean = false,
-	@Expose var bindAddress: String = ""
+	@Expose var bindAddress: String = "",
+	@Expose var keepAliveInterval: Int = 15,
+	@Expose var serverPassword: String = ""
 ) {
 	fun save(context: ContextWrapper) {
 		val json = GSON.toJson(this)

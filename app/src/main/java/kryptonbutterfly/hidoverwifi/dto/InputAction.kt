@@ -5,7 +5,7 @@ import java.io.DataOutputStream
 import java.io.Serializable
 import java.util.Arrays
 
-private enum class Action {
+enum class Action {
 	MOVE,
 	BUTTON,
 	CLICK,
@@ -13,7 +13,8 @@ private enum class Action {
 	SCROLL,
 	KEY,
 	TYPE,
-	TEXT
+	TEXT,
+	KEEP_ALIVE
 }
 
 sealed class InputAction: Serializable {

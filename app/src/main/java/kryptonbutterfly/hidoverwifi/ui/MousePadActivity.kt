@@ -91,6 +91,7 @@ class MousePadActivity : AppCompatActivity() {
 								event(ActionMouseButton(MouseButton.LEFT, true))
 							event(ActionMouseMove(distanceX.toInt(), distanceY.toInt()))
 						}
+						
 						else -> {
 							if (prefs(this@MousePadActivity).showScrollBar) {
 								event(ActionMouseButton(MouseButton.LEFT, true))
@@ -122,18 +123,6 @@ class MousePadActivity : AppCompatActivity() {
 					super.onLongPress(e)
 				}
 				
-				override fun onFling(
-					e1: MotionEvent?,
-					e2: MotionEvent,
-					velocityX: Float,
-					velocityY: Float
-				): Boolean {
-					stopDrag()
-					//TODO continue scrolling with momentum
-					Log.d(TRACKPAD, "onFling($velocityX, $velocityY)")
-					return super.onFling(e1, e2, velocityX, velocityY)
-				}
-				
 				override fun onShowPress(e: MotionEvent) {
 					stopDrag()
 					if (!prefs(this@MousePadActivity).showScrollBar) {
@@ -155,19 +144,20 @@ class MousePadActivity : AppCompatActivity() {
 			}
 		})
 		
-		val scrollDetector = GestureDetector(this, object: GestureDetector.SimpleOnGestureListener() {
-			override fun onScroll(
-				e1: MotionEvent?,
-				e2: MotionEvent,
-				distanceX: Float,
-				distanceY: Float
-			): Boolean {
-				val y = (distanceY / 2).toInt()
-				if (y != 0)
-					event(ActionMouseScroll(0, y))
-				return true
-			}
-		})
+		val scrollDetector =
+			GestureDetector(this, object : GestureDetector.SimpleOnGestureListener() {
+				override fun onScroll(
+					e1: MotionEvent?,
+					e2: MotionEvent,
+					distanceX: Float,
+					distanceY: Float
+				): Boolean {
+					val y = (distanceY / 2).toInt()
+					if (y != 0)
+						event(ActionMouseScroll(0, y))
+					return true
+				}
+			})
 		
 		val scrollBar = findViewById<ConstraintLayout>(R.id.touch_pad_scroll_vertical)
 		scrollBar.setOnTouchListener { view, event ->
@@ -179,16 +169,16 @@ class MousePadActivity : AppCompatActivity() {
 	}
 	
 	override fun onPause() {
+		Log.d(TRACKPAD, "onPause() invoked!")
 		super.onPause()
 		prefs(this).save(this)
 	}
 	
-	override fun onDestroy() {
+	override fun onStop() {
 		Network.disconnect(true)
-		Log.v(TRACKPAD, "onDestroy")
-		super.onDestroy()
+		super.onStop()
 	}
-	
+
 	private fun releasePointer() {
 		if (!dragFlag)
 			return

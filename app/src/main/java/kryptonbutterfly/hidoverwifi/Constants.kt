@@ -10,7 +10,7 @@ object Constants {
 	
 	const val TRACKPAD = "TRACKPAD"
 	
-	const val KEYSTORE_ALIAS = "HIDoverWifi"
-	
 	const val INTERNAL_KEYSTORE_NAME = "keystore.p12"
+	
+	const val PROTOCOL_ID = -8596033659527291744L
 }
