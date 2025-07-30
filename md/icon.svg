@@ -1,0 +1,22 @@
+<svg width="144" height="144" version="1.1" viewBox="0 0 144 144" xmlns="http://www.w3.org/2000/svg">
+	<defs>
+		<linearGradient id="d" x1="42.5" x2="102.5" y1="64" y2="102" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#f6bf2a" offset="0"/>
+			<stop stop-color="#ed7421" offset="1"/>
+		</linearGradient>
+		<linearGradient id="e" x1="40.5" x2="104.5" y1="62" y2="106" gradientTransform="matrix(1 0 0 .77722 0 18.541)" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#fe019a" offset="0"/>
+			<stop stop-color="#a835af" offset="1"/>
+		</linearGradient>
+		<linearGradient id="f" x1="77" x2="98" y1="38" y2="54.5" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#00ffce" offset="0"/>
+			<stop stop-color="#5c55cf" offset="1"/>
+		</linearGradient>
+	</defs>
+	<g stroke-miterlimit="2" stroke-width="0">
+		<path d="M40 24a28 28 0 0 0 -16 16a100 100 0 0 0 0 64a28 28 0 0 0 16 16a100 100 0 0 0 64 0a28 28 0 0 0 16 -16a100 100 0 0 0 0 -64a28 28 0 0 0 -16 -16a100 100 0 0 0 -64 0Z" fill="#20123a" stroke-miterlimit="2" stroke-width="0" style="paint-order:stroke fill markers"/>
+		<path d="m42 63.5v37l4 4h53l4-4v-37z" fill="url(#d)" style="paint-order:stroke fill markers"/>
+		<path d="m44.5 62a4 4 0 0 0-4 4v32a8 8 0 0 0 8 8h48a8 8 0 0 0 8-8v-32a4 4 0 0 0-4-4h-56v2h56a2 2 0 0 1 2 2v27h-60v-27a2 2 0 0 1 2-2m-2 31h60v3a6 6 0 0 1-6 6h-23v-9m-2 0v9h-23a6 6 0 0 1-6-6v-3z" fill="url(#e)" style="paint-order:stroke fill markers"/>
+		<path d="m90 59a1.5 1.5 0 0 0 3-3 1.5 1.5 0 0 0-3 3m5-5a1 1 0 0 0 2-2 7.75 7.75 0 0 0-11 0 1 1 0 0 0 2 2 5 5 0 0 1 7 0m4-4a1 1 0 0 0 2-2 13.435 13.435 0 0 0-19 0 1 1 0 0 0 2 2 10.607 10.607 0 0 1 15 0m4-4a1 1 0 0 0 2-2 19.092 19.092 0 0 0-27 0 1 1 0 0 0 2 2 16.263 16.263 0 0 1 23 0z" fill="url(#f)" style="paint-order:stroke fill markers"/>
+	</g>
+</svg>
