@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import kryptonbutterfly.hidoverwifi.Constants.GSON
+import kryptonbutterfly.hidoverwifi.Constants.KEYBOARD_LAYOUTS
+import kryptonbutterfly.hidoverwifi.Constants.KEYBOARD_LAYOUT_PREFIX
 import kryptonbutterfly.hidoverwifi.Constants.TRACKPAD
 import kryptonbutterfly.hidoverwifi.KeyText
 import kryptonbutterfly.hidoverwifi.R
@@ -20,10 +22,15 @@ import kryptonbutterfly.hidoverwifi.dto.ActionKeyboardKey
 import kryptonbutterfly.hidoverwifi.dto.ActionKeyboardType
 import kryptonbutterfly.hidoverwifi.dto.ActionTextTyped
 import kryptonbutterfly.hidoverwifi.network.Network
+import kryptonbutterfly.hidoverwifi.prefs.prefs
+import java.util.Arrays
 
 class KeyboardActivity : AppCompatActivity() {
 	private val settingsResult =
-		registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {}
+		registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+			loadKeyboardLayout()
+			updateKeyText()
+		}
 	
 	private val keyboardLayout: HashMap<Int, KeyText?> = HashMap()
 	
@@ -40,28 +47,40 @@ class KeyboardActivity : AppCompatActivity() {
 		updateKeyText()
 	}
 	
+	override fun onStop() {
+		Network.disconnect(true)
+		super.onStop()
+	}
+	
 	private fun loadKeyboardLayout() {
-		val json = resources.openRawResource(R.raw.keyboard_de_de)
-			.bufferedReader()
-			.use { it.readText() }
-		GSON.fromJson<HashMap<String, ArrayList<String>>>(json, HashMap::class.java)
-			.forEach { name, data ->
-				val id = resources.getIdentifier(name, "id", packageName)
-				val keyText: KeyText? = when(val size = data.size) {
-					0 -> null
-					2 -> KeyText(data[0], data[1])
-					3 -> KeyText(data[0], data[1], data[2])
-					4 -> KeyText(data[0], data[1], data[2], data[3])
-					5 -> KeyText(data[0], data[1], data[2], data[3], data[4])
-					else -> {
-						if (size < 2)
-							throw IllegalArgumentException("'$name' doesn't have enough values")
-						Log.w(TRACKPAD, "Expected between 2 and 5 arguments got $size instead. Ignoring superfluous args.")
-						KeyText(data[0], data[1], data[2], data[3], data[4])
+		val targetName = prefs(this).keyboardLayout
+		KEYBOARD_LAYOUTS.getOrElse(targetName) { KEYBOARD_LAYOUTS.values.firstOrNull() }
+			?.also { layoutId ->
+			val json = resources.openRawResource(layoutId)
+				.bufferedReader()
+				.use { it.readText() }
+			GSON.fromJson<HashMap<String, ArrayList<String>>>(json, HashMap::class.java)
+				.forEach { name, data ->
+					val id = resources.getIdentifier(name, "id", packageName)
+					val keyText: KeyText? = when (val size = data.size) {
+						0 -> null
+						2 -> KeyText(data[0], data[1])
+						3 -> KeyText(data[0], data[1], data[2])
+						4 -> KeyText(data[0], data[1], data[2], data[3])
+						5 -> KeyText(data[0], data[1], data[2], data[3], data[4])
+						else -> {
+							if (size < 2)
+								throw IllegalArgumentException("'$name' doesn't have enough values")
+							Log.w(
+								TRACKPAD,
+								"Expected between 2 and 5 arguments got $size instead. Ignoring superfluous args."
+							)
+							KeyText(data[0], data[1], data[2], data[3], data[4])
+						}
 					}
+					keyboardLayout.put(id, keyText)
 				}
-				keyboardLayout.put(id, keyText)
-			}
+		}
 	}
 	
 	private fun updateKeyText(shift: Boolean = false, altGr: Boolean = false) {

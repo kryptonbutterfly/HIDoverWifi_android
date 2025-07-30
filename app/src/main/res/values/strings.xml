@@ -32,4 +32,6 @@
     <string name="settings_cert_passwd_hint">Certificate Password</string>
     <string name="settings_hint_keepalive_interval">Keepalive interval in seconds</string>
     <string name="settings_hint_server_password">server password</string>
+    <string name="keyboard_settings_title">Keyboard</string>
+    <string name="settings_keyboard_layout">Layout</string>
 </resources>

@@ -20,6 +20,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.textfield.TextInputEditText
 import kryptonbutterfly.hidoverwifi.Constants.INTERNAL_KEYSTORE_NAME
+import kryptonbutterfly.hidoverwifi.Constants.KEYBOARD_LAYOUTS
 import kryptonbutterfly.hidoverwifi.R
 import kryptonbutterfly.hidoverwifi.prefs.prefs
 import java.io.File
@@ -32,9 +33,12 @@ import java.util.Objects
 class PreferencesActivity : AppCompatActivity() {
 	
 	private lateinit var adapter: ArrayAdapter<AddressInfo>
+	private lateinit var layoutAdapter: ArrayAdapter<String>
 	private lateinit var main: ConstraintLayout
 	private lateinit var bindSwitch: SwitchCompat
 	private lateinit var spinnerBindAddress: Spinner
+	private lateinit var keyboardLayout: Spinner
+	private var selectedLayout: String? = null
 	
 	private val picker =
 		registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -62,6 +66,8 @@ class PreferencesActivity : AppCompatActivity() {
 		val textCertLoc = findViewById<TextView>(R.id.textCertFile)
 		val textCertPW = findViewById<TextInputEditText>(R.id.certPwText)
 		val textKeepAliveInterval = findViewById<TextView>(R.id.keepAlive_interval)
+		keyboardLayout = findViewById<Spinner>(R.id.keyboardLayout)
+		
 		bindSwitch = findViewById(R.id.switchBind)
 		spinnerBindAddress = findViewById(R.id.spinnerBindAddresses)
 		switchScrollBar.isChecked = prefs.showScrollBar
@@ -75,12 +81,17 @@ class PreferencesActivity : AppCompatActivity() {
 		serverPassword.setText(prefs.serverPassword)
 		textCertPW.setText(prefs.certPassword)
 		textKeepAliveInterval.text = prefs.keepAliveInterval.toString()
+		
 		bindSwitch.isChecked = prefs.bind
 		spinnerBindAddress.visibility = if (prefs.bind) VISIBLE else GONE
 		
 		adapter = ArrayAdapter<AddressInfo>(this, android.R.layout.simple_spinner_item)
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 		spinnerBindAddress.adapter = adapter
+		
+		layoutAdapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item)
+		layoutAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+		keyboardLayout.adapter = layoutAdapter
 		
 		onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
 			override fun handleOnBackPressed() {
@@ -98,6 +109,7 @@ class PreferencesActivity : AppCompatActivity() {
 				prefs.bind = bindSwitch.isChecked
 				prefs.bindAddress =
 					(spinnerBindAddress.selectedItem as? AddressInfo)?.address?.hostAddress ?: ""
+				prefs.keyboardLayout = keyboardLayout.selectedItem as String
 				finish()
 			}
 		})
@@ -112,6 +124,11 @@ class PreferencesActivity : AppCompatActivity() {
 		adapter.clear()
 		val available = getAllNetworkInterfaces()
 		adapter.addAll(available)
+		
+		val selectedLayout = (keyboardLayout.selectedItem as? String)
+		layoutAdapter.clear()
+		val availableLayouts = KEYBOARD_LAYOUTS.keys.toMutableList()
+		layoutAdapter.addAll(availableLayouts)
 		
 		selected?.also { aInfo ->
 			val index =
@@ -130,6 +147,24 @@ class PreferencesActivity : AppCompatActivity() {
 					spinnerBindAddress.isSelected = false
 			} else
 				spinnerBindAddress.isSelected = false
+		}
+		
+		selectedLayout?.also { lName ->
+			val index = availableLayouts.indexOfFirst { it == lName }
+			if (index != -1)
+				keyboardLayout.setSelection(index)
+			else
+				keyboardLayout.isSelected = false
+		} ?: also {
+			val prefsLayout = prefs(this).keyboardLayout
+			if (prefsLayout.isNotEmpty()){
+				val index = availableLayouts.indexOfFirst { it == prefsLayout }
+				if (index != -1)
+					keyboardLayout.setSelection(index)
+				else
+					keyboardLayout.isSelected = false
+			} else
+				keyboardLayout.isSelected = false
 		}
 	}
 	
