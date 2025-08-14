@@ -12,7 +12,7 @@ object Constants {
 	
 	const val INTERNAL_KEYSTORE_NAME = "keystore.p12"
 	
-	const val PROTOCOL_ID = -8596033659527291744L
+	const val PROTOCOL_ID = -8596033659527291743L
 	
 	const val KEYBOARD_LAYOUT_PREFIX = "keyboard_"
 	

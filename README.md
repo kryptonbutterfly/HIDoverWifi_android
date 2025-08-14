@@ -13,7 +13,7 @@ In order to setup it's best to start with setting up the service first and come 
 
 #### App Setup
 
-* Download and install [HIDoverWifi.apk](https://github.com/kryptonbutterfly/HIDoverWifi_android/releases/download/v1.1.0/HIDoverWifi.apk)
+* Download and install [HIDoverWifi.apk](https://github.com/kryptonbutterfly/HIDoverWifi_android/releases/download/v2.0.0/HIDoverWifi.apk)
 * copy the public .p12 certificate to your phone
 * connect to the wifi network your computer is connected to
 * start the app

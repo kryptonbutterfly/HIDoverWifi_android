@@ -34,4 +34,6 @@
     <string name="settings_hint_server_password">server password</string>
     <string name="keyboard_settings_title">Keyboard</string>
     <string name="settings_keyboard_layout">Layout</string>
+    <string name="clipboard_settings_title">Clipboard</string>
+    <string name="settings_clipboard_copy_from_host">Copy from host</string>
 </resources>

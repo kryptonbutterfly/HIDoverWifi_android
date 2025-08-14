@@ -17,7 +17,8 @@ data class Prefs(
 	@Expose var bindAddress: String = "",
 	@Expose var keepAliveInterval: Int = 15,
 	@Expose var serverPassword: String = "",
-	@Expose var keyboardLayout: String = ""
+	@Expose var keyboardLayout: String = "",
+	@Expose var copyFromHost: Boolean = false
 ) {
 	fun save(context: ContextWrapper) {
 		val json = GSON.toJson(this)

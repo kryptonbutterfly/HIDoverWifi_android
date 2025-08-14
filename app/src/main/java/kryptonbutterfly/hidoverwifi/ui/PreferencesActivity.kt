@@ -38,7 +38,6 @@ class PreferencesActivity : AppCompatActivity() {
 	private lateinit var bindSwitch: SwitchCompat
 	private lateinit var spinnerBindAddress: Spinner
 	private lateinit var keyboardLayout: Spinner
-	private var selectedLayout: String? = null
 	
 	private val picker =
 		registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -66,10 +65,13 @@ class PreferencesActivity : AppCompatActivity() {
 		val textCertLoc = findViewById<TextView>(R.id.textCertFile)
 		val textCertPW = findViewById<TextInputEditText>(R.id.certPwText)
 		val textKeepAliveInterval = findViewById<TextView>(R.id.keepAlive_interval)
-		keyboardLayout = findViewById<Spinner>(R.id.keyboardLayout)
+		keyboardLayout = findViewById(R.id.keyboardLayout)
 		
 		bindSwitch = findViewById(R.id.switchBind)
 		spinnerBindAddress = findViewById(R.id.spinnerBindAddresses)
+		
+		val copyFromHost = findViewById<SwitchCompat>(R.id.copyFromHost)
+		
 		switchScrollBar.isChecked = prefs.showScrollBar
 		textAddress.setText(prefs.address)
 		pickerServerPort.minValue = 1
@@ -93,6 +95,8 @@ class PreferencesActivity : AppCompatActivity() {
 		layoutAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 		keyboardLayout.adapter = layoutAdapter
 		
+		copyFromHost.isChecked = prefs.copyFromHost
+		
 		onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
 			override fun handleOnBackPressed() {
 				prefs.showScrollBar = switchScrollBar.isChecked
@@ -110,6 +114,7 @@ class PreferencesActivity : AppCompatActivity() {
 				prefs.bindAddress =
 					(spinnerBindAddress.selectedItem as? AddressInfo)?.address?.hostAddress ?: ""
 				prefs.keyboardLayout = keyboardLayout.selectedItem as String
+				prefs.copyFromHost = copyFromHost.isChecked
 				finish()
 			}
 		})

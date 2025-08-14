@@ -1,5 +1,8 @@
 package kryptonbutterfly.hidoverwifi.network
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.content.ContextWrapper
 import android.util.Log
 import kryptonbutterfly.hidoverwifi.Constants.INTERNAL_KEYSTORE_NAME
@@ -10,6 +13,7 @@ import kryptonbutterfly.hidoverwifi.dto.InputAction
 import kryptonbutterfly.hidoverwifi.prefs.Prefs
 import kryptonbutterfly.hidoverwifi.prefs.prefs
 import java.io.Closeable
+import java.io.DataInputStream
 import java.io.DataOutputStream
 import java.io.File
 import java.net.InetAddress
@@ -24,7 +28,12 @@ import javax.net.ssl.SSLSocketFactory
 import javax.net.ssl.TrustManagerFactory
 import kotlin.text.Charsets.UTF_8
 
-private class Connection(val socket: Socket, val oStream: DataOutputStream, val prefs: Prefs) :
+private class Connection(
+	val socket: Socket,
+	val oStream: DataOutputStream,
+	val iStream: DataInputStream,
+	val prefs: Prefs
+) :
 	Closeable {
 	private var lastUpdate = System.currentTimeMillis()
 	private var running = true
@@ -71,7 +80,8 @@ private class Connection(val socket: Socket, val oStream: DataOutputStream, val 
 
 object Network {
 	private var connection: Connection? = null
-	private var executor: ExecutorService? = null
+	private var outExecutor: ExecutorService? = null
+	private var inExecutor: ExecutorService? = null
 	
 	private fun factory(context: ContextWrapper, prefs: Prefs): SSLSocketFactory? {
 		val file = File(context.filesDir, INTERNAL_KEYSTORE_NAME)
@@ -110,7 +120,12 @@ object Network {
 			socket.outputStream.write(buffer.array())
 			socket.outputStream.flush()
 			Log.v(TRACKPAD, "is connected: ${socket.isConnected}")
-			connection = Connection(socket, DataOutputStream(socket.outputStream), prefs)
+			connection = Connection(
+				socket,
+				DataOutputStream(socket.outputStream),
+				DataInputStream(socket.inputStream),
+				prefs
+			)
 			connection?.keepAlive()
 		}
 	}
@@ -140,7 +155,18 @@ object Network {
 	
 	fun disconnect(terminate: Boolean = false) {
 		Log.d(TRACKPAD, "Network#disconnect(terminate = $terminate) invoked.")
-		executor?.also { exec ->
+		inExecutor?.also { exec ->
+			if (terminate) {
+				try {
+					exec.shutdownNow()
+				} catch (e: Throwable) {
+					Log.e(TRACKPAD, e.stackTraceToString(), e)
+				}
+			}
+		}
+		inExecutor = null
+		
+		outExecutor?.also { exec ->
 			exec.execute {
 				try {
 					connection?.also {
@@ -157,12 +183,12 @@ object Network {
 				exec.shutdown()
 			}
 		}
-		executor = null
+		outExecutor = null
 	}
 	
 	fun event(context: ContextWrapper, action: InputAction) {
-		executor = executor ?: Executors.newSingleThreadExecutor()
-		executor?.execute {
+		outExecutor = outExecutor ?: Executors.newSingleThreadExecutor()
+		outExecutor?.execute {
 			try {
 				ensureConnected(context)
 				connection?.also {
@@ -180,6 +206,40 @@ object Network {
 				Log.e(TRACKPAD, e.stackTraceToString(), e)
 				Log.d(TRACKPAD, prefs(context).toString())
 			}
+		}
+		
+		if (prefs(context).copyFromHost) {
+			inExecutor = inExecutor ?: Executors.newSingleThreadExecutor()
+			inExecutor?.execute {
+				try {
+					connection?.also { conn ->
+						while (!conn.socket.isClosed)
+							readAction(context, conn)
+					}
+				} catch (e: Throwable) {
+					Log.e(TRACKPAD, e.stackTraceToString(), e)
+				}
+			}
+		}
+	}
+	
+	private fun readAction(context: ContextWrapper, conn: Connection) {
+		try {
+			val action = conn.iStream.readUTF()
+			when (action) {
+				"CLIPBOARD" -> {
+					val content = conn.iStream.readUTF()
+					val clip = ClipData.newPlainText(content, content)
+					(context.getSystemService(Context.CLIPBOARD_SERVICE) as? ClipboardManager)
+						?.also {
+							it.setPrimaryClip(clip)
+						}
+						?: run { Log.w(TRACKPAD, "clipboard == null") }
+				}
+				
+				else -> Log.e(TRACKPAD, "Received unexpected action '$action'")
+			}
+		} catch (_: SocketException) { /* ignore Socket Exceptions */
 		}
 	}
 }
