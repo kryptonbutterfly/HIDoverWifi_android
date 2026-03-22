@@ -88,13 +88,13 @@ class MousePadActivity : AppCompatActivity() {
 					when (e2.pointerCount) {
 						1 -> {
 							if (dragFlag)
-								event(ActionMouseButton(MouseButton.LEFT, true))
+								event(ActionMouseButton(MouseButton.BTN_LEFT, true))
 							event(ActionMouseMove(distanceX.toInt(), distanceY.toInt()))
 						}
 						
 						else -> {
 							if (prefs(this@MousePadActivity).showScrollBar) {
-								event(ActionMouseButton(MouseButton.LEFT, true))
+								event(ActionMouseButton(MouseButton.BTN_LEFT, true))
 								event(ActionMouseMove(distanceX.toInt(), distanceY.toInt()))
 								startDrag()
 							} else {
@@ -107,19 +107,19 @@ class MousePadActivity : AppCompatActivity() {
 				
 				override fun onDoubleTap(e: MotionEvent): Boolean {
 					stopDrag()
-					event(ActionMouseDoubleClick(MouseButton.LEFT))
+					event(ActionMouseDoubleClick(MouseButton.BTN_LEFT))
 					return super.onDoubleTap(e)
 				}
 				
 				override fun onSingleTapConfirmed(e: MotionEvent): Boolean {
 					stopDrag()
-					event(ActionMouseClick(MouseButton.LEFT))
+					event(ActionMouseClick(MouseButton.BTN_LEFT))
 					return super.onSingleTapConfirmed(e)
 				}
 				
 				override fun onLongPress(e: MotionEvent) {
 					stopDrag()
-					event(ActionMouseClick(MouseButton.RIGHT))
+					event(ActionMouseClick(MouseButton.BTN_RIGHT))
 					super.onLongPress(e)
 				}
 				
@@ -183,7 +183,7 @@ class MousePadActivity : AppCompatActivity() {
 		if (!dragFlag)
 			return
 		stopDrag()
-		event(ActionMouseButton(MouseButton.LEFT, false))
+		event(ActionMouseButton(MouseButton.BTN_LEFT, false))
 	}
 	
 	fun onSettingsClick(@Suppress("UNUSED_PARAMETER") view: View) {
@@ -191,32 +191,32 @@ class MousePadActivity : AppCompatActivity() {
 	}
 	
 	fun onTabClicked(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("TAB"))
+		Network.event(this, ActionKeyboardType("KEY_TAB"))
 	}
 	
 	fun onShiftClick(@Suppress("UNUSED_PARAMETER") view: View) {
 		val btn = view as ToggleButton
-		Network.event(this, ActionKeyboardKey("SHIFT", btn.isChecked))
+		Network.event(this, ActionKeyboardKey("KEY_LEFT_SHIFT", btn.isChecked))
 	}
 	
 	fun onCtrlClick(@Suppress("UNUSED_PARAMETER") view: View) {
 		val btn = view as ToggleButton
-		Network.event(this, ActionKeyboardKey("CTRL", btn.isChecked))
+		Network.event(this, ActionKeyboardKey("KEY_LEFT_CTRL", btn.isChecked))
 	}
 	
 	fun onSuperClick(@Suppress("UNUSED_PARAMETER") view: View) {
 		val btn = view as ToggleButton
-		Network.event(this, ActionKeyboardKey("SUPER", btn.isChecked))
+		Network.event(this, ActionKeyboardKey("KEY_LEFT_META", btn.isChecked))
 	}
 	
 	fun onAltClick(@Suppress("UNUSED_PARAMETER") view: View) {
 		val btn = view as ToggleButton
-		Network.event(this, ActionKeyboardKey("ALT", btn.isChecked))
+		Network.event(this, ActionKeyboardKey("KEY_LEFT_ALT", btn.isChecked))
 	}
 	
 	fun onAltGrClick(@Suppress("UNUSED_PARAMETER") view: View) {
 		val btn = view as ToggleButton
-		Network.event(this, ActionKeyboardKey("ALTGR", btn.isChecked))
+		Network.event(this, ActionKeyboardKey("KEY_RIGHT_ALT", btn.isChecked))
 	}
 	
 	fun onKeyboardClick(@Suppress("UNUSED_PARAMETER") view: View) {

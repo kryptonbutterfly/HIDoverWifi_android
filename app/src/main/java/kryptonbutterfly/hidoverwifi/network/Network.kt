@@ -117,6 +117,7 @@ object Network {
 			} else {
 				socket = factory.createSocket(serverAddress, prefs.port)
 			}
+			
 			socket.outputStream.write(buffer.array())
 			socket.outputStream.flush()
 			Log.v(TRACKPAD, "is connected: ${socket.isConnected}")
