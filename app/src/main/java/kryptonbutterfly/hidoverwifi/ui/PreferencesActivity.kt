@@ -12,7 +12,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import kryptonbutterfly.hidoverwifi.Constants.KEYBOARD_LAYOUTS
 import kryptonbutterfly.hidoverwifi.R
+import kryptonbutterfly.hidoverwifi.prefs.Prefs
 import kryptonbutterfly.hidoverwifi.prefs.prefs
+import kryptonbutterfly.hidoverwifi.prefs.savePrefs
 
 class PreferencesActivity : AppCompatActivity() {
 	private lateinit var layoutAdapter: ArrayAdapter<String>
@@ -52,7 +54,7 @@ class PreferencesActivity : AppCompatActivity() {
 					
 					prefs.keyboardLayout = keyboardLayout.selectedItem as String
 					prefs.copyFromHost = copyFromHost.isChecked
-					prefs.save(this@PreferencesActivity)
+					savePrefs(this@PreferencesActivity)
 					finish()
 				}
 			})

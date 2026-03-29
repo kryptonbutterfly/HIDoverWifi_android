@@ -26,7 +26,9 @@ import kryptonbutterfly.hidoverwifi.Constants.INTERNAL_KEYSTORE_NAME
 import kryptonbutterfly.hidoverwifi.Constants.TRACKPAD
 import kryptonbutterfly.hidoverwifi.R
 import kryptonbutterfly.hidoverwifi.prefs.DeviceSettings
+import kryptonbutterfly.hidoverwifi.prefs.Prefs
 import kryptonbutterfly.hidoverwifi.prefs.prefs
+import kryptonbutterfly.hidoverwifi.prefs.savePrefs
 import java.io.File
 import java.net.Inet4Address
 import java.net.Inet6Address
@@ -124,17 +126,19 @@ class DevicePrefsActivity : AppCompatActivity() {
 				spinnerBindAddress.setSelection(index)
 			else
 				spinnerBindAddress.isSelected = false
-		}
-		
-		targetDevice?.bindAddress?.also { bindAddress ->
-			if (bindAddress.isNotEmpty()) {
-				val index = available.indexOfFirst { it.address.hostAddress == bindAddress }
-				if (index != -1)
-					spinnerBindAddress.setSelection(index)
-				else
+		}?:also {
+			targetDevice?.bindAddress?.also { bindAddress ->
+				if (bindAddress.isNotEmpty()) {
+					val index = available.indexOfFirst { it.address.hostAddress == bindAddress }
+					if (index != -1)
+						spinnerBindAddress.setSelection(index)
+					else
+						spinnerBindAddress.isSelected = false
+				} else
 					spinnerBindAddress.isSelected = false
-			} else
+			}?:also {
 				spinnerBindAddress.isSelected = false
+			}
 		}
 	}
 	
@@ -183,7 +187,7 @@ class DevicePrefsActivity : AppCompatActivity() {
 			prefs.devices[device.id] = device
 			result.putExtra(DEVICE, device.id)
 		}
-		prefs.save(this)
+		savePrefs(this)
 		setResult(RESULT_OK, result)
 		finish()
 	}
