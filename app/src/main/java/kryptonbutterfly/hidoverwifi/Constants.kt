@@ -8,11 +8,20 @@ object Constants {
 		.setPrettyPrinting()
 		.create()
 	
+	const val DEFAULT_PORT = 4620
+	const val DEFAULT_KEEP_ALIVE_SECONDS = 15
+	
+	/**
+	 * The maximum delay in milliseconds before a scheduled action will be discarded.
+	 */
+	const val MAX_DELAY_MS = 500
 	const val TRACKPAD = "TRACKPAD"
 	
 	const val INTERNAL_KEYSTORE_NAME = "keystore.p12"
 	
 	const val PROTOCOL_ID = -8596033659527291744L
+	
+	const val DEVICE = "DEVICE"
 	
 	const val KEYBOARD_LAYOUT_PREFIX = "keyboard_"
 	

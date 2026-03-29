@@ -9,16 +9,11 @@ private const val PREFS_FILE: String = "Settings.json"
 
 data class Prefs(
 	@Expose var showScrollBar:Boolean = false,
-	@Expose var address: String = "",
-	@Expose var port: Int = 4620,
-	@Expose var certificate: String = "",
-	@Expose var certPassword: String = "public",
-	@Expose var bind: Boolean = false,
-	@Expose var bindAddress: String = "",
-	@Expose var keepAliveInterval: Int = 15,
-	@Expose var serverPassword: String = "",
 	@Expose var keyboardLayout: String = "",
-	@Expose var copyFromHost: Boolean = false
+	@Expose var copyFromHost: Boolean = false,
+	@Expose var deviceIdSource: Long = Long.MIN_VALUE,
+	@Expose var devices: HashMap<Long, DeviceSettings> = HashMap(),
+	@Expose var currentDevice: Long = Long.MIN_VALUE
 ) {
 	fun save(context: ContextWrapper) {
 		val json = GSON.toJson(this)
@@ -28,6 +23,14 @@ data class Prefs(
 				parent.mkdirs()
 		}
 		file.bufferedWriter().use { it.write(json) }
+	}
+	
+	fun genDeviceId(): Long {
+		return deviceIdSource++
+	}
+	
+	fun currentDevice(): DeviceSettings? {
+		return devices[currentDevice]
 	}
 }
 

@@ -6,11 +6,12 @@ import android.content.Context
 import android.content.ContextWrapper
 import android.util.Log
 import kryptonbutterfly.hidoverwifi.Constants.INTERNAL_KEYSTORE_NAME
+import kryptonbutterfly.hidoverwifi.Constants.MAX_DELAY_MS
 import kryptonbutterfly.hidoverwifi.Constants.PROTOCOL_ID
 import kryptonbutterfly.hidoverwifi.Constants.TRACKPAD
 import kryptonbutterfly.hidoverwifi.dto.Action
 import kryptonbutterfly.hidoverwifi.dto.InputAction
-import kryptonbutterfly.hidoverwifi.prefs.Prefs
+import kryptonbutterfly.hidoverwifi.prefs.DeviceSettings
 import kryptonbutterfly.hidoverwifi.prefs.prefs
 import java.io.Closeable
 import java.io.DataInputStream
@@ -32,7 +33,7 @@ private class Connection(
 	val socket: Socket,
 	val oStream: DataOutputStream,
 	val iStream: DataInputStream,
-	val prefs: Prefs
+	val device: DeviceSettings
 ) :
 	Closeable {
 	private var lastUpdate = System.currentTimeMillis()
@@ -42,7 +43,7 @@ private class Connection(
 	}
 	
 	private fun msUntilNextUpdate(): Long {
-		return (lastUpdate + 1000 * prefs.keepAliveInterval) - System.currentTimeMillis()
+		return lastUpdate + 1000 * device.keepAliveInterval - System.currentTimeMillis()
 	}
 	
 	fun oStream(): DataOutputStream {
@@ -83,70 +84,60 @@ object Network {
 	private var outExecutor: ExecutorService? = null
 	private var inExecutor: ExecutorService? = null
 	
-	private fun factory(context: ContextWrapper, prefs: Prefs): SSLSocketFactory? {
+	private fun factory(context: ContextWrapper, device: DeviceSettings): SSLSocketFactory? {
 		val file = File(context.filesDir, INTERNAL_KEYSTORE_NAME)
-		if (file.exists())
-			file.inputStream().use { iStream ->
-				val keyStore = KeyStore.getInstance("PKCS12")
-				keyStore.load(iStream, prefs.certPassword.toCharArray())
-				val tmf =
-					TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm())
-				tmf.init(keyStore)
-				val context = SSLContext.getInstance("TLS")
-				context.init(null, tmf.trustManagers, null)
-				return context.socketFactory
-			}
-		return null
+		if (!file.exists())
+			return null
+		return file.inputStream().use { iStream ->
+			val keyStore = KeyStore.getInstance("PKCS12")
+			keyStore.load(iStream, device.certPassword.toCharArray())
+			val tmf = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm())
+			tmf.init(keyStore)
+			val context = SSLContext.getInstance("TLS")
+			context.init(null, tmf.trustManagers, null)
+			context.socketFactory
+		}
 	}
 	
 	private fun connect(context: ContextWrapper) {
-		val prefs = prefs(context)
-		
-		val pwBytes = prefs.serverPassword.toByteArray(UTF_8)
-		val buffer = ByteBuffer.allocate(8 + 1 + pwBytes.size)
-		buffer.putLong(PROTOCOL_ID)
-		buffer.put(pwBytes.size.toByte())
-		buffer.put(pwBytes)
-		
-		factory(context, prefs)?.also { factory ->
-			val serverAddress = InetAddress.getByName(prefs.address)
-			val socket: Socket
-			if (prefs.bind && prefs.bindAddress.isNotEmpty()) {
-				val bindAddress = InetAddress.getByName(prefs.bindAddress)
-				socket = factory.createSocket(serverAddress, prefs.port, bindAddress, 0)
-			} else {
-				socket = factory.createSocket(serverAddress, prefs.port)
-			}
+		connection = null
+		prefs(context).currentDevice()?.also { device ->
+			val pwBytes = device.serverPassword.toByteArray(UTF_8)
+			val buffer = ByteBuffer.allocate(8 + 1 + pwBytes.size)
+			buffer.putLong(PROTOCOL_ID)
+			buffer.put(pwBytes.size.toByte())
+			buffer.put(pwBytes)
 			
-			socket.outputStream.write(buffer.array())
-			socket.outputStream.flush()
-			Log.v(TRACKPAD, "is connected: ${socket.isConnected}")
-			connection = Connection(
-				socket,
-				DataOutputStream(socket.outputStream),
-				DataInputStream(socket.inputStream),
-				prefs
-			)
-			connection?.keepAlive()
+			factory(context, device)?.also { factory ->
+				val serverAddress = InetAddress.getByName(device.address)
+				val socket: Socket
+				if (device.bind && device.bindAddress.isNotEmpty()) {
+					val bindAddress = InetAddress.getByName(device.bindAddress)
+					socket = factory.createSocket(serverAddress, device.port, bindAddress, 0)
+				} else {
+					socket = factory.createSocket(serverAddress, device.port)
+				}
+				
+				socket.outputStream.write(buffer.array())
+				socket.outputStream.flush()
+				Log.v(TRACKPAD, "is connected: ${socket.isConnected}")
+				connection = Connection(
+					socket,
+					DataOutputStream(socket.outputStream),
+					DataInputStream(socket.inputStream),
+					device)
+				connection?.keepAlive()
+			}
 		}
 	}
 	
 	private fun ensureConnected(context: ContextWrapper) {
 		connection?.also {
-			val prefs = prefs(context)
-			var requireNew = false
-			if (prefs.bind && prefs.bindAddress.isNotEmpty() && !it.socket.isBound)
-				requireNew = true
-			if (prefs.address != it.socket.inetAddress.hostAddress)
-				requireNew = true
-			if (prefs.port != it.socket.port)
-				requireNew = true
-			if (!it.socket.isConnected)
-				requireNew = true
-			if (it.socket.isClosed)
-				requireNew = true
-			
-			if (requireNew) {
+			if ((it.device.bind && it.device.bindAddress.isNotEmpty() && !it.socket.isBound) ||
+				it.device.address != it.socket.inetAddress.hostAddress ||
+				it.device.port != it.socket.port ||
+				!it.socket.isConnected ||
+				it.socket.isClosed) {
 				if (!it.socket.isClosed)
 					it.close()
 				connect(context)
@@ -187,20 +178,30 @@ object Network {
 		outExecutor = null
 	}
 	
-	fun event(context: ContextWrapper, action: InputAction) {
+	fun ensureConnection(context: ContextWrapper) {
+		Log.i(TRACKPAD, "Ensuring a connection is established.")
+		event(context, null)
+	}
+	
+	fun event(context: ContextWrapper, action: InputAction?) {
 		outExecutor = outExecutor ?: Executors.newSingleThreadExecutor()
+		val currTime = System.currentTimeMillis()
 		outExecutor?.execute {
 			try {
 				ensureConnected(context)
-				connection?.also {
-					Log.v(TRACKPAD, "event: $action")
-					try {
-						synchronized(it) {
-							action.write(it.oStream())
+				action?.also { action ->
+					connection?.also {
+						Log.v(TRACKPAD, "event: $action")
+						try {
+							synchronized(it) {
+								if (currTime + MAX_DELAY_MS > System.currentTimeMillis()) {
+									action.write(it.oStream())
+								}
+							}
+						} catch (_: Throwable) {
+							it.close()
+							connection = null
 						}
-					} catch (_: Throwable) {
-						it.close()
-						connection = null
 					}
 				}
 			} catch (e: Throwable) {

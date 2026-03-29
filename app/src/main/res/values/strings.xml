@@ -36,4 +36,11 @@
     <string name="settings_keyboard_layout">Layout</string>
     <string name="clipboard_settings_title">Clipboard</string>
     <string name="settings_clipboard_copy_from_host">Copy from host</string>
+    <string name="addDeviceButtonDescription">add Device</string>
+    <string name="buttonCancelText">Cancel</string>
+    <string name="buttonAcceptText">Accept</string>
+    <string name="InputTextHintDeviceName">Device name</string>
+    <string name="textHintKeepaliveSeconds">sec</string>
+    <string name="deviceEditButtonDescription">edit device</string>
+    <string name="deviceDeleteButtonDescription">delete device</string>
 </resources>

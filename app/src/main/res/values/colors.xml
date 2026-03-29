@@ -11,4 +11,6 @@
     <color name="Gray80">#FFCCCCCC</color>
     <color name="Gray90">#FFE6E6E6</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="light">#14FFFFFF</color>
+    <color name="dark">#14000000</color>
 </resources>

@@ -66,6 +66,8 @@ class MousePadActivity : AppCompatActivity() {
 			insets
 		}
 		
+		Network.ensureConnection(this)
+		
 		val vibratorManager = getSystemService(VIBRATOR_MANAGER_SERVICE) as VibratorManager
 		val vibrator = Arrays.stream(vibratorManager.vibratorIds)
 			.mapToObj(vibratorManager::getVibrator)
@@ -166,17 +168,6 @@ class MousePadActivity : AppCompatActivity() {
 			scrollDetector.onTouchEvent(event)
 		}
 		scrollBar.visibility = if (prefs(this).showScrollBar) VISIBLE else GONE
-	}
-	
-	override fun onPause() {
-		Log.d(TRACKPAD, "onPause() invoked!")
-		super.onPause()
-		prefs(this).save(this)
-	}
-	
-	override fun onStop() {
-		Network.disconnect(true)
-		super.onStop()
 	}
 
 	private fun releasePointer() {

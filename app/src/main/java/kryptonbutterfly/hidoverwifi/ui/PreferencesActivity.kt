@@ -1,49 +1,24 @@
 package kryptonbutterfly.hidoverwifi.ui
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.widget.ArrayAdapter
-import android.widget.NumberPicker
 import android.widget.Spinner
-import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.google.android.material.textfield.TextInputEditText
-import kryptonbutterfly.hidoverwifi.Constants.INTERNAL_KEYSTORE_NAME
 import kryptonbutterfly.hidoverwifi.Constants.KEYBOARD_LAYOUTS
 import kryptonbutterfly.hidoverwifi.R
 import kryptonbutterfly.hidoverwifi.prefs.prefs
-import java.io.File
-import java.net.Inet4Address
-import java.net.Inet6Address
-import java.net.InetAddress
-import java.net.NetworkInterface
-import java.util.Objects
 
 class PreferencesActivity : AppCompatActivity() {
-	
-	private lateinit var adapter: ArrayAdapter<AddressInfo>
 	private lateinit var layoutAdapter: ArrayAdapter<String>
 	private lateinit var main: ConstraintLayout
-	private lateinit var bindSwitch: SwitchCompat
-	private lateinit var spinnerBindAddress: Spinner
 	private lateinit var keyboardLayout: Spinner
 	
-	private val picker =
-		registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-			if (result.resultCode == RESULT_OK)
-				result.data?.data?.let(this::openCertFile)
-		}
 	
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -57,67 +32,31 @@ class PreferencesActivity : AppCompatActivity() {
 		}
 		
 		val prefs = prefs(this)
-		
-		val switchScrollBar = findViewById<SwitchCompat>(R.id.switchScrollBar)
-		val textAddress = findViewById<TextInputEditText>(R.id.textAddress)
-		val pickerServerPort = findViewById<NumberPicker>(R.id.server_port)
-		val serverPassword = findViewById<TextInputEditText>(R.id.server_password)
-		val textCertLoc = findViewById<TextView>(R.id.textCertFile)
-		val textCertPW = findViewById<TextInputEditText>(R.id.certPwText)
-		val textKeepAliveInterval = findViewById<TextView>(R.id.keepAlive_interval)
-		keyboardLayout = findViewById(R.id.keyboardLayout)
-		
-		bindSwitch = findViewById(R.id.switchBind)
-		spinnerBindAddress = findViewById(R.id.spinnerBindAddresses)
-		
-		val copyFromHost = findViewById<SwitchCompat>(R.id.copyFromHost)
-		
-		switchScrollBar.isChecked = prefs.showScrollBar
-		textAddress.setText(prefs.address)
-		pickerServerPort.minValue = 1
-		pickerServerPort.maxValue = 0xFFFF
-		pickerServerPort.value = prefs.port
-		if (prefs.certificate.isNotEmpty())
-			textCertLoc.text = prefs.certificate
-		
-		serverPassword.setText(prefs.serverPassword)
-		textCertPW.setText(prefs.certPassword)
-		textKeepAliveInterval.text = prefs.keepAliveInterval.toString()
-		
-		bindSwitch.isChecked = prefs.bind
-		spinnerBindAddress.visibility = if (prefs.bind) VISIBLE else GONE
-		
-		adapter = ArrayAdapter<AddressInfo>(this, android.R.layout.simple_spinner_item)
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-		spinnerBindAddress.adapter = adapter
-		
-		layoutAdapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item)
-		layoutAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-		keyboardLayout.adapter = layoutAdapter
-		
-		copyFromHost.isChecked = prefs.copyFromHost
-		
-		onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
-			override fun handleOnBackPressed() {
-				prefs.showScrollBar = switchScrollBar.isChecked
-				prefs.address = textAddress.text.toString()
-				prefs.port = pickerServerPort.value
-				prefs.serverPassword = serverPassword.text.toString()
-				
-				val keepalive = textKeepAliveInterval.text.toString()
-				if (keepalive.isNotBlank())
-					prefs.keepAliveInterval = Integer.parseInt(keepalive)
-				
-				prefs.certificate = textCertLoc.text.toString()
-				prefs.certPassword = textCertPW.text.toString()
-				prefs.bind = bindSwitch.isChecked
-				prefs.bindAddress =
-					(spinnerBindAddress.selectedItem as? AddressInfo)?.address?.hostAddress ?: ""
-				prefs.keyboardLayout = keyboardLayout.selectedItem as String
-				prefs.copyFromHost = copyFromHost.isChecked
-				finish()
-			}
-		})
+		prefs.devices[prefs.currentDevice]?.also { device ->
+			
+			val switchScrollBar = findViewById<SwitchCompat>(R.id.switchScrollBar)
+			keyboardLayout = findViewById(R.id.keyboardLayout)
+			val copyFromHost = findViewById<SwitchCompat>(R.id.copyFromHost)
+			
+			switchScrollBar.isChecked = prefs.showScrollBar
+			
+			layoutAdapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item)
+			layoutAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+			keyboardLayout.adapter = layoutAdapter
+			
+			copyFromHost.isChecked = prefs.copyFromHost
+			
+			onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+				override fun handleOnBackPressed() {
+					prefs.showScrollBar = switchScrollBar.isChecked
+					
+					prefs.keyboardLayout = keyboardLayout.selectedItem as String
+					prefs.copyFromHost = copyFromHost.isChecked
+					prefs.save(this@PreferencesActivity)
+					finish()
+				}
+			})
+		}
 	}
 	
 	override fun onWindowFocusChanged(hasFocus: Boolean) {
@@ -125,34 +64,10 @@ class PreferencesActivity : AppCompatActivity() {
 		if (!hasFocus)
 			return
 		
-		val selected = (spinnerBindAddress.selectedItem as? AddressInfo)
-		adapter.clear()
-		val available = getAllNetworkInterfaces()
-		adapter.addAll(available)
-		
 		val selectedLayout = (keyboardLayout.selectedItem as? String)
 		layoutAdapter.clear()
 		val availableLayouts = KEYBOARD_LAYOUTS.keys.toMutableList()
 		layoutAdapter.addAll(availableLayouts)
-		
-		selected?.also { aInfo ->
-			val index =
-				available.indexOfFirst { it.address.hostAddress == aInfo.address.hostAddress }
-			if (index != -1)
-				spinnerBindAddress.setSelection(index)
-			else
-				spinnerBindAddress.isSelected = false
-		} ?: also {
-			val bindAddress = prefs(this).bindAddress
-			if (bindAddress.isNotEmpty()) {
-				val index = available.indexOfFirst { it.address.hostAddress == bindAddress }
-				if (index != -1)
-					spinnerBindAddress.setSelection(index)
-				else
-					spinnerBindAddress.isSelected = false
-			} else
-				spinnerBindAddress.isSelected = false
-		}
 		
 		selectedLayout?.also { lName ->
 			val index = availableLayouts.indexOfFirst { it == lName }
@@ -170,60 +85,6 @@ class PreferencesActivity : AppCompatActivity() {
 					keyboardLayout.isSelected = false
 			} else
 				keyboardLayout.isSelected = false
-		}
-	}
-	
-	fun onBindInterfaceClicked(@Suppress("UNUSED_PARAMETER") view: View) {
-		spinnerBindAddress.visibility = if (bindSwitch.isChecked) VISIBLE else GONE
-		main.invalidate()
-	}
-	
-	fun onCertFileClick(@Suppress("UNUSED_PARAMETER") view: View) {
-		val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
-		intent.addCategory(Intent.CATEGORY_OPENABLE)
-		intent.type = "*/*"
-		intent.putExtra(Intent.EXTRA_TITLE, "public.p12")
-		picker.launch(intent)
-	}
-	
-	private fun openCertFile(uri: Uri) {
-		if (uri.scheme != "content")
-			return
-		
-		val file = File(filesDir, INTERNAL_KEYSTORE_NAME)
-		contentResolver.openInputStream(uri)?.use { iStream ->
-			file.outputStream().use { iStream.copyTo(it) }
-		}
-		
-		uri.path?.also { path ->
-			val displayName = path.substring(path.indexOf(":") + 1)
-			findViewById<TextView>(R.id.textCertFile).text = displayName
-		}
-	}
-	
-	private fun getAllNetworkInterfaces(): ArrayList<AddressInfo> {
-		val interfaces = NetworkInterface.getNetworkInterfaces()
-		val addresses: ArrayList<AddressInfo> = ArrayList()
-		interfaces.toList().stream()
-			.filter { !it.isLoopback }
-			.forEach { net ->
-				net.inetAddresses.toList()
-					.filter { it.address.size == 4 }
-					.forEach { addresses.add(AddressInfo(net.displayName, it)) }
-			}
-		return addresses
-	}
-}
-
-private data class AddressInfo(val interfaceName: String, val address: InetAddress) {
-	override fun toString(): String {
-		return when (address) {
-			is Inet4Address -> "${address.hostAddress} @$interfaceName"
-			is Inet6Address -> "%s @%s".format(
-				Objects.toString(address.hostAddress).replace("%$interfaceName", ""), interfaceName
-			)
-			
-			else -> "??? $address @$interfaceName"
 		}
 	}
 }
