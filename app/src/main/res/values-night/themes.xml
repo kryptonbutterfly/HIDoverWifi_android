@@ -14,6 +14,14 @@
 
         <item name="android:statusBarColor">@color/Gray20</item>
 
+        <item name="switch_track_tint_on">@color/light_blue</item>
+        <item name="switch_track_tint_off">@color/Gray30</item>
+        <item name="switch_thumb_tint_on">@color/Gray90</item>
+        <item name="switch_thumb_tint_off">@color/Gray90</item>
+
+        <item name="trackTint">@color/switch_track_tint</item>
+        <item name="thumbTint">@color/switch_thumb_tint</item>
+
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>

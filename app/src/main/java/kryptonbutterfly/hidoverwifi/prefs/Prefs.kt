@@ -1,13 +1,11 @@
 package kryptonbutterfly.hidoverwifi.prefs
 
-import android.R
-import android.content.ContextWrapper
+import android.content.Context
 import android.util.Log
 import com.google.gson.annotations.Expose
 import kryptonbutterfly.hidoverwifi.Constants.GSON
 import kryptonbutterfly.hidoverwifi.Constants.TRACKPAD
 import kryptonbutterfly.hidoverwifi.prefs.PrefsHelper.isInitialized
-import kryptonbutterfly.hidoverwifi.prefs.PrefsHelper.lastData
 import java.io.File
 import java.util.Objects
 
@@ -35,7 +33,7 @@ private object PrefsHelper {
 	
 	private var lastData: String = ""
 	
-	fun load(context: ContextWrapper) {
+	fun load(context: Context) {
 		val file = File(context.filesDir, PREFS_FILE)
 		if (file.exists()) {
 			val json = file.bufferedReader().use { it.readText() }
@@ -47,7 +45,7 @@ private object PrefsHelper {
 			prefs = Prefs()
 		}
 	}
-	fun save(context: ContextWrapper) {
+	fun save(context: Context) {
 		Log.d(TRACKPAD, "save prefs initiated")
 		if (!isInitialized()) {
 			Log.d(TRACKPAD, "No data to store -- SKIPPING")
@@ -73,12 +71,12 @@ private object PrefsHelper {
 	}
 }
 
-fun savePrefs(context: ContextWrapper) {
+fun savePrefs(context: Context) {
 	PrefsHelper.save(context)
 }
 
 
-fun prefs(context: ContextWrapper): Prefs {
+fun prefs(context: Context): Prefs {
 	if (!isInitialized())
 		PrefsHelper.load(context)
 	return PrefsHelper.prefs

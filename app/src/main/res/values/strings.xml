@@ -43,4 +43,5 @@
     <string name="textHintKeepaliveSeconds">sec</string>
     <string name="deviceEditButtonDescription">edit device</string>
     <string name="deviceDeleteButtonDescription">delete device</string>
+    <string name="text_public">public</string>
 </resources>

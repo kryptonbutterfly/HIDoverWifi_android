@@ -66,7 +66,7 @@ class MousePadActivity : AppCompatActivity() {
 			insets
 		}
 		
-		Network.ensureConnection(this)
+		Network.prepareConnection(this)
 		
 		val vibratorManager = getSystemService(VIBRATOR_MANAGER_SERVICE) as VibratorManager
 		val vibrator = Arrays.stream(vibratorManager.vibratorIds)

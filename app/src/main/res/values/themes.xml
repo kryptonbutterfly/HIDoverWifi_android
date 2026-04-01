@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <style name="Theme.HIDoverWifi" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">@color/Gray20</item>
         <item name="colorPrimaryVariant">@color/Gray10</item>
@@ -14,6 +13,14 @@
         <item name="backgroundColor">@color/Gray90</item>
 
         <item name="android:statusBarColor">@color/Gray80</item>
+
+        <item name="switch_track_tint_on">@color/light_blue</item>
+        <item name="switch_track_tint_off">@color/Gray70</item>
+        <item name="switch_thumb_tint_on">@color/Gray90</item>
+        <item name="switch_thumb_tint_off">@color/Gray90</item>
+
+        <item name="trackTint">@color/switch_track_tint</item>
+        <item name="thumbTint">@color/switch_thumb_tint</item>
 
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

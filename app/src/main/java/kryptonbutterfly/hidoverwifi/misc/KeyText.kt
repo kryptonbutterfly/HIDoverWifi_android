@@ -1,4 +1,4 @@
-package kryptonbutterfly.hidoverwifi
+package kryptonbutterfly.hidoverwifi.misc
 
 data class KeyText(
 	val uniqueKeyName: String,

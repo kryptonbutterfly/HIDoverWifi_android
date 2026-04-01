@@ -31,128 +31,140 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/clipboardTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingStart="24dp"
-                android:paddingTop="24dp"
-                android:paddingEnd="24dp"
-                android:paddingBottom="4dp"
-                android:text="@string/clipboard_settings_title"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout6" />
-
-            <TextView
-                android:id="@+id/mouseTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingStart="24dp"
-                android:paddingTop="24dp"
-                android:paddingEnd="24dp"
-                android:paddingBottom="4dp"
-                android:text="@string/mouse_settings_title"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@id/mouse_settings_container"
-                app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="wrap_content"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingBottom="24dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/mouse_settings_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rounded_edges_small"
-                android:paddingHorizontal="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mouseTitle">
-
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/switchScrollBar"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:minHeight="48dp"
-                    android:text="@string/scroll_bar_vertical"
-                    android:textColor="?android:attr/colorForeground"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <TextView
-                android:id="@+id/keyboardTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingStart="24dp"
-                android:paddingTop="24dp"
-                android:paddingEnd="24dp"
-                android:paddingBottom="4dp"
-                android:text="@string/keyboard_settings_title"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/mouse_settings_container" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_edges_small"
-                android:paddingHorizontal="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/keyboardTitle">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/clipboardTitle"
                     android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:gravity="center_vertical"
-                    android:text="@string/settings_keyboard_layout"
-                    app:layout_constraintBottom_toBottomOf="@+id/keyboardLayout"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="24dp"
+                    android:paddingTop="24dp"
+                    android:paddingEnd="24dp"
+                    android:paddingBottom="4dp"
+                    android:text="@string/clipboard_settings_title"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/constraintLayout6" />
+
+                <TextView
+                    android:id="@+id/mouseTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="24dp"
+                    android:paddingTop="24dp"
+                    android:paddingEnd="24dp"
+                    android:paddingBottom="4dp"
+                    android:text="@string/mouse_settings_title"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="@id/mouse_settings_container"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <Spinner
-                    android:id="@+id/keyboardLayout"
-                    android:layout_width="0dp"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/mouse_settings_container"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:minHeight="48dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/textView3"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_edges_small"
-                android:paddingHorizontal="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/clipboardTitle">
-
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/copyFromHost"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:minHeight="48dp"
-                    android:text="@string/settings_clipboard_copy_from_host"
-                    android:textSize="18sp"
+                    android:background="@drawable/rounded_edges_small"
+                    android:paddingHorizontal="24dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    app:layout_constraintTop_toBottomOf="@+id/mouseTitle">
 
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switchScrollBar"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:text="@string/scroll_bar_vertical"
+                        android:textColor="?android:attr/colorForeground"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/keyboardTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="24dp"
+                    android:paddingTop="24dp"
+                    android:paddingEnd="24dp"
+                    android:paddingBottom="4dp"
+                    android:text="@string/keyboard_settings_title"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/mouse_settings_container" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_edges_small"
+                    android:paddingHorizontal="24dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/keyboardTitle">
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/settings_keyboard_layout"
+                        app:layout_constraintBottom_toBottomOf="@+id/keyboardLayout"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <Spinner
+                        android:id="@+id/keyboardLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:minHeight="48dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/textView3"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintLayout7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_edges_small"
+                    android:paddingHorizontal="24dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/clipboardTitle">
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/copyFromHost"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:text="@string/settings_clipboard_copy_from_host"
+                        android:textSize="18sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

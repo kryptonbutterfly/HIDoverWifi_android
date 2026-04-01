@@ -16,10 +16,10 @@ import androidx.core.view.WindowInsetsCompat
 import kryptonbutterfly.hidoverwifi.Constants.GSON
 import kryptonbutterfly.hidoverwifi.Constants.KEYBOARD_LAYOUTS
 import kryptonbutterfly.hidoverwifi.Constants.TRACKPAD
-import kryptonbutterfly.hidoverwifi.KeyText
 import kryptonbutterfly.hidoverwifi.R
 import kryptonbutterfly.hidoverwifi.dto.ActionKeyboardKey
 import kryptonbutterfly.hidoverwifi.dto.ActionKeyboardType
+import kryptonbutterfly.hidoverwifi.misc.KeyText
 import kryptonbutterfly.hidoverwifi.network.Network
 import kryptonbutterfly.hidoverwifi.prefs.prefs
 
@@ -36,7 +36,7 @@ class KeyboardActivity : AppCompatActivity() {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_keyboard)
 		
-		Network.ensureConnection(this)
+		Network.prepareConnection(this)
 		ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.keyboardTopBar)) { v, insets ->
 			val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
 			v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
