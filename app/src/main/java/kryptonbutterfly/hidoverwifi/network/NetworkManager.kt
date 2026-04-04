@@ -8,11 +8,18 @@ import android.content.ContextWrapper
 import android.util.Log
 import android.widget.Toast
 import kryptonbutterfly.hidoverwifi.Constants.INTERNAL_KEYSTORE_NAME
+import kryptonbutterfly.hidoverwifi.Constants.Keys.KEY_LEFT_ALT
+import kryptonbutterfly.hidoverwifi.Constants.Keys.KEY_LEFT_CTRL
+import kryptonbutterfly.hidoverwifi.Constants.Keys.KEY_LEFT_META
+import kryptonbutterfly.hidoverwifi.Constants.Keys.KEY_LEFT_SHIFT
+import kryptonbutterfly.hidoverwifi.Constants.Keys.KEY_RIGHT_ALT
+import kryptonbutterfly.hidoverwifi.Constants.Keys.KEY_TAB
 import kryptonbutterfly.hidoverwifi.Constants.MAX_DELAY_MS
 import kryptonbutterfly.hidoverwifi.Constants.PROTOCOL_ID
 import kryptonbutterfly.hidoverwifi.Constants.TRACKPAD
 import kryptonbutterfly.hidoverwifi.ToastHelper
 import kryptonbutterfly.hidoverwifi.dto.Action
+import kryptonbutterfly.hidoverwifi.dto.ActionKeyboardKey
 import kryptonbutterfly.hidoverwifi.dto.InputAction
 import kryptonbutterfly.hidoverwifi.prefs.DeviceSettings
 import kryptonbutterfly.hidoverwifi.prefs.prefs
@@ -33,6 +40,7 @@ import java.util.concurrent.Executors
 import java.util.concurrent.LinkedBlockingQueue
 import java.util.concurrent.ThreadPoolExecutor
 import java.util.concurrent.TimeUnit
+import java.util.function.Consumer
 import javax.net.ssl.SSLContext
 import javax.net.ssl.SSLSocketFactory
 import javax.net.ssl.TrustManagerFactory
@@ -41,7 +49,8 @@ private class Connection2(
 	val socket: Socket,
 	val oStream: DataOutputStream,
 	val iStream: DataInputStream,
-	val device: DeviceSettings
+	val device: DeviceSettings,
+	val pressedKeys: PressedKeys = PressedKeys()
 ) : Closeable {
 	private var lastUpdate = System.currentTimeMillis()
 	private var running = false
@@ -178,6 +187,16 @@ private class Connection2(
 					if (currTime + MAX_DELAY_MS > System.currentTimeMillis()) {
 						Log.v(TRACKPAD, "emitting action: $action")
 						action.write(oStream())
+						when (action) {
+							is ActionKeyboardKey -> when (action.key) {
+								KEY_LEFT_SHIFT -> pressedKeys.shift = action.down
+								KEY_LEFT_CTRL -> pressedKeys.ctrl = action.down
+								KEY_LEFT_META -> pressedKeys.meta = action.down
+								KEY_LEFT_ALT -> pressedKeys.alt = action.down
+								KEY_RIGHT_ALT -> pressedKeys.altGr = action.down
+								}
+							else -> {}
+						}
 					}
 				}
 			} catch (e: Throwable) {
@@ -316,5 +335,9 @@ object Network {
 				queue.clear()
 			}
 		}
+	}
+	
+	fun pressedKeys(action: Consumer<PressedKeys>) {
+		connection?.pressedKeys?.also(action::accept)
 	}
 }

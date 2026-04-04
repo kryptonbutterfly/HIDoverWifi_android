@@ -28,4 +28,13 @@ object Constants {
 	val KEYBOARD_LAYOUTS = R.raw::class.java.declaredFields
 		.filter { f -> f.name.startsWith(KEYBOARD_LAYOUT_PREFIX) }
 		.associate { f -> f.name.replace(KEYBOARD_LAYOUT_PREFIX, "") to f.getInt(null) }
+	
+	object Keys {
+		const val KEY_TAB = "KEY_TAB"
+		const val KEY_LEFT_SHIFT = "KEY_LEFT_SHIFT"
+		const val KEY_LEFT_CTRL = "KEY_LEFT_CTRL"
+		const val KEY_LEFT_META = "KEY_LEFT_META"
+		const val KEY_LEFT_ALT = "KEY_LEFT_ALT"
+		const val KEY_RIGHT_ALT = "KEY_RIGHT_ALT"
+	}
 }

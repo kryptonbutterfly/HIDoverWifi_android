@@ -15,6 +15,12 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import kryptonbutterfly.hidoverwifi.Constants.GSON
 import kryptonbutterfly.hidoverwifi.Constants.KEYBOARD_LAYOUTS
+import kryptonbutterfly.hidoverwifi.Constants.Keys.KEY_LEFT_ALT
+import kryptonbutterfly.hidoverwifi.Constants.Keys.KEY_LEFT_CTRL
+import kryptonbutterfly.hidoverwifi.Constants.Keys.KEY_LEFT_META
+import kryptonbutterfly.hidoverwifi.Constants.Keys.KEY_LEFT_SHIFT
+import kryptonbutterfly.hidoverwifi.Constants.Keys.KEY_RIGHT_ALT
+import kryptonbutterfly.hidoverwifi.Constants.Keys.KEY_TAB
 import kryptonbutterfly.hidoverwifi.Constants.TRACKPAD
 import kryptonbutterfly.hidoverwifi.R
 import kryptonbutterfly.hidoverwifi.dto.ActionKeyboardKey
@@ -24,6 +30,11 @@ import kryptonbutterfly.hidoverwifi.network.Network
 import kryptonbutterfly.hidoverwifi.prefs.prefs
 
 class KeyboardActivity : AppCompatActivity() {
+	private lateinit var shiftButton: ToggleButton
+	private lateinit var ctrlButton: ToggleButton
+	private lateinit var metaButton: ToggleButton
+	private lateinit var altButton: ToggleButton
+	private lateinit var altGrButton: ToggleButton
 	private val settingsResult =
 		registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
 			loadKeyboardLayout()
@@ -37,6 +48,13 @@ class KeyboardActivity : AppCompatActivity() {
 		setContentView(R.layout.activity_keyboard)
 		
 		Network.prepareConnection(this)
+		
+		shiftButton = findViewById(R.id.buttonShift2)
+		ctrlButton = findViewById(R.id.buttonCtrl2)
+		metaButton = findViewById(R.id.buttonSuper)
+		altButton = findViewById(R.id.buttonAlt)
+		altGrButton = findViewById(R.id.buttonAltGr)
+		
 		ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.keyboardTopBar)) { v, insets ->
 			val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
 			v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -45,6 +63,17 @@ class KeyboardActivity : AppCompatActivity() {
 		
 		loadKeyboardLayout()
 		updateKeyText()
+	}
+	
+	override fun onResume() {
+		Network.pressedKeys {
+			shiftButton.isChecked = it.shift
+			ctrlButton.isChecked = it.ctrl
+			metaButton.isChecked = it.meta
+			altButton.isChecked = it.alt
+			altGrButton.isChecked = it.altGr
+		}
+		super.onResume()
 	}
 	
 	private fun loadKeyboardLayout() {
@@ -209,35 +238,35 @@ class KeyboardActivity : AppCompatActivity() {
 	
 	fun onCtrlClick(@Suppress("UNUSED_PARAMETER") view: View) {
 		val btn = view as ToggleButton
-		Network.event(this, ActionKeyboardKey("KEY_LEFT_CTRL", btn.isChecked))
+		Network.event(this, ActionKeyboardKey(KEY_LEFT_CTRL, btn.isChecked))
 	}
 	
 	fun onShiftClick(@Suppress("UNUSED_PARAMETER") view: View) {
 		val btn = view as ToggleButton
-		Network.event(this, ActionKeyboardKey("KEY_LEFT_SHIFT", btn.isChecked))
+		Network.event(this, ActionKeyboardKey(KEY_LEFT_SHIFT, btn.isChecked))
 		val btnAltGr = findViewById<ToggleButton>(R.id.buttonAltGr)
 		updateKeyText(btn.isChecked, btnAltGr.isChecked)
 	}
 	
 	fun onAltClick(@Suppress("UNUSED_PARAMETER") view: View) {
 		val btn = view as ToggleButton
-		Network.event(this, ActionKeyboardKey("KEY_LEFT_ALT", btn.isChecked))
+		Network.event(this, ActionKeyboardKey(KEY_LEFT_ALT, btn.isChecked))
 	}
 	
 	fun onAltGrClick(@Suppress("UNUSED_PARAMETER") view: View) {
 		val btn = view as ToggleButton
-		Network.event(this, ActionKeyboardKey("KEY_RIGHT_ALT", btn.isChecked))
+		Network.event(this, ActionKeyboardKey(KEY_RIGHT_ALT, btn.isChecked))
 		val btnShift = findViewById<ToggleButton>(R.id.buttonShift2)
 		updateKeyText(btnShift.isChecked, btn.isChecked)
 	}
 	
 	fun onSuperClick(@Suppress("UNUSED_PARAMETER") view: View) {
 		val btn = view as ToggleButton
-		Network.event(this, ActionKeyboardKey("KEY_LEFT_META", btn.isChecked))
+		Network.event(this, ActionKeyboardKey(KEY_LEFT_META, btn.isChecked))
 	}
 	
 	fun onTabClicked(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("KEY_TAB"))
+		Network.event(this, ActionKeyboardType(KEY_TAB))
 	}
 	
 	fun onMouseClick(@Suppress("UNUSED_PARAMETER") view: View) {
