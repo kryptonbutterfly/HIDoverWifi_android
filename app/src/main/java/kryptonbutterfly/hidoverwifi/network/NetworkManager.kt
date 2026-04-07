@@ -4,7 +4,6 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Context.CLIPBOARD_SERVICE
-import android.content.ContextWrapper
 import android.util.Log
 import android.widget.Toast
 import kryptonbutterfly.hidoverwifi.Constants.INTERNAL_KEYSTORE_NAME
@@ -13,7 +12,6 @@ import kryptonbutterfly.hidoverwifi.Constants.Keys.KEY_LEFT_CTRL
 import kryptonbutterfly.hidoverwifi.Constants.Keys.KEY_LEFT_META
 import kryptonbutterfly.hidoverwifi.Constants.Keys.KEY_LEFT_SHIFT
 import kryptonbutterfly.hidoverwifi.Constants.Keys.KEY_RIGHT_ALT
-import kryptonbutterfly.hidoverwifi.Constants.Keys.KEY_TAB
 import kryptonbutterfly.hidoverwifi.Constants.MAX_DELAY_MS
 import kryptonbutterfly.hidoverwifi.Constants.PROTOCOL_ID
 import kryptonbutterfly.hidoverwifi.Constants.TRACKPAD
@@ -312,7 +310,7 @@ object Network {
 		worker = createWorker()
 	}
 	
-	fun event(context: ContextWrapper, action: InputAction) {
+	fun event(context: Context, action: InputAction) {
 		val appContext = context.applicationContext
 		worker.execute {
 			ensureConnected(appContext)?.also {
@@ -328,7 +326,7 @@ object Network {
 		}
 	}
 	
-	fun prepareConnection(context: ContextWrapper) {
+	fun prepareConnection(context: Context) {
 		worker.execute {
 			Log.i(TRACKPAD, "preparing a connection if possible.")
 			ensureConnected(context)?:also {

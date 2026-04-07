@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
@@ -24,7 +25,6 @@ import kryptonbutterfly.hidoverwifi.Constants.Keys.KEY_TAB
 import kryptonbutterfly.hidoverwifi.Constants.TRACKPAD
 import kryptonbutterfly.hidoverwifi.R
 import kryptonbutterfly.hidoverwifi.dto.ActionKeyboardKey
-import kryptonbutterfly.hidoverwifi.dto.ActionKeyboardType
 import kryptonbutterfly.hidoverwifi.misc.KeyText
 import kryptonbutterfly.hidoverwifi.network.Network
 import kryptonbutterfly.hidoverwifi.prefs.prefs
@@ -62,6 +62,7 @@ class KeyboardActivity : AppCompatActivity() {
 		}
 		
 		loadKeyboardLayout()
+		attachKeyListener()
 		updateKeyText()
 	}
 	
@@ -112,128 +113,57 @@ class KeyboardActivity : AppCompatActivity() {
 			val btn = findViewById<Button>(id)
 			text?.also {
 				btn.text = it.apply(shift, altGr)
+				btn.setOnTouchListener(KeyListener(it.uniqueKeyName))
 				btn.visibility = VISIBLE
 			}?:run{
+				btn.setOnTouchListener(null)
 				btn.visibility = INVISIBLE
 			}
 		}
 	}
 	
-	fun onKeyTyped(view: View) {
-		val btn = view as Button
-		keyboardLayout[btn.id]?.also { keyText ->
-			Network.event(this, ActionKeyboardType(keyText.uniqueKeyName))
-		}?:run {
-			Log.i(TRACKPAD, "No key defined in keyboardLayout for button ${btn.id}.")
+	private fun attachKeyListener() {
+		fun attach(id: Int, key: String) {
+			findViewById<View>(id).setOnTouchListener(KeyListener(key))
 		}
+		attach(R.id.buttonRightArrow, "KEY_RIGHT")
+		attach(R.id.buttonDownArrow, "KEY_DOWN")
+		attach(R.id.buttonLeftArrow, "KEY_LEFT")
+		attach(R.id.buttonUpArrow, "KEY_UP")
+		
+		attach(R.id.buttonPictureUp, "KEY_PAGE_UP")
+		attach(R.id.buttonPictureDown, "KEY_PAGE_DOWN")
+		
+		attach(R.id.buttonPos1, "KEY_HOME")
+		attach(R.id.buttonEnd, "KEY_END")
+		
+		attach(R.id.buttonInsert, "KEY_INSERT")
+		attach(R.id.buttonDel, "KEY_DELETE")
+		
+		attach(R.id.keyboard_button_Esc, "KEY_ESC")
+		attach(R.id.keyboard_button_F1, "KEY_F1")
+		attach(R.id.keyboard_button_F2, "KEY_F2")
+		attach(R.id.keyboard_button_F3, "KEY_F3")
+		attach(R.id.keyboard_button_F4, "KEY_F4")
+		attach(R.id.keyboard_button_F5, "KEY_F5")
+		attach(R.id.keyboard_button_F6, "KEY_F6")
+		attach(R.id.keyboard_button_F7, "KEY_F7")
+		attach(R.id.keyboard_button_F8, "KEY_F8")
+		attach(R.id.keyboard_button_F9, "KEY_F9")
+		attach(R.id.keyboard_button_F10, "KEY_F10")
+		attach(R.id.keyboard_button_F11, "KEY_F11")
+		attach(R.id.keyboard_button_F12, "KEY_F12")
+		
+		attach(R.id.keyboard_button_backspace, "KEY_BACKSPACE")
+		attach(R.id.keyboard_button_space, "KEY_SPACE")
+		attach(R.id.keyboard_button_enter, "KEY_ENTER")
+		attach(R.id.buttonTab, KEY_TAB)
+		
 	}
+	
 	
 	fun onSettingsClick(@Suppress("UNUSED_PARAMETER") view: View) {
 		settingsResult.launch(Intent(this, PreferencesActivity::class.java))
-	}
-	
-	fun onRightArrowClick(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("KEY_RIGHT"))
-	}
-	
-	fun onDownArrowClick(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("KEY_DOWN"))
-	}
-	
-	fun onLeftArrowClick(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("KEY_LEFT"))
-	}
-	
-	fun onUpArrowClick(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("KEY_UP"))
-	}
-	
-	fun onPageUpClick(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("KEY_PAGE_UP"))
-	}
-	
-	fun onPageDownClick(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("KEY_PAGE_DOWN"))
-	}
-	
-	fun onPos1Click(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("KEY_HOME"))
-	}
-	
-	fun onEndClick(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("KEY_END"))
-	}
-	
-	fun onInsertClick(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("KEY_INSERT"))
-	}
-	
-	fun onDelClick(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("KEY_DELETE"))
-	}
-	
-	fun onEscClick(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("KEY_ESC"))
-	}
-	
-	fun onF1Click(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("KEY_F1"))
-	}
-	
-	fun onF2Click(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("KEY_F2"))
-	}
-	
-	fun onF3Click(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("KEY_F3"))
-	}
-	
-	fun onF4Click(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("KEY_F4"))
-	}
-	
-	fun onF5Click(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("KEY_F5"))
-	}
-	
-	fun onF6Click(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("KEY_F6"))
-	}
-	
-	fun onF7Click(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("KEY_F7"))
-	}
-	
-	fun onF8Click(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("KEY_F8"))
-	}
-	
-	fun onF9Click(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("KEY_F9"))
-	}
-	
-	fun onF10Click(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("KEY_F10"))
-	}
-	
-	fun onF11Click(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("KEY_F11"))
-	}
-	
-	fun onF12Click(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("KEY_F12"))
-	}
-	
-	fun onBackSpaceClick(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("KEY_BACKSPACE"))
-	}
-	
-	fun onSpaceClick(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("KEY_SPACE"))
-	}
-	
-	fun onEnterClick(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType("KEY_ENTER"))
 	}
 	
 	fun onCtrlClick(@Suppress("UNUSED_PARAMETER") view: View) {
@@ -265,11 +195,25 @@ class KeyboardActivity : AppCompatActivity() {
 		Network.event(this, ActionKeyboardKey(KEY_LEFT_META, btn.isChecked))
 	}
 	
-	fun onTabClicked(@Suppress("UNUSED_PARAMETER") view: View) {
-		Network.event(this, ActionKeyboardType(KEY_TAB))
-	}
-	
 	fun onMouseClick(@Suppress("UNUSED_PARAMETER") view: View) {
 		onBackPressedDispatcher.onBackPressed()
 	}
+	
+	class KeyListener(val keyID: String) : View.OnTouchListener {
+		override fun onTouch(view: View, event: MotionEvent): Boolean {
+			when (event.actionMasked) {
+				MotionEvent.ACTION_DOWN, MotionEvent.ACTION_POINTER_DOWN -> {
+					view.isPressed = true
+					Network.event(view.context, ActionKeyboardKey(this.keyID, true))
+				}
+				MotionEvent.ACTION_UP, MotionEvent.ACTION_POINTER_UP, MotionEvent.ACTION_CANCEL -> {
+					view.isPressed = false
+					Network.event(view.context, ActionKeyboardKey(this.keyID, false))
+					view.performClick()
+				}
+			}
+			return true
+		}
+	}
+	
 }

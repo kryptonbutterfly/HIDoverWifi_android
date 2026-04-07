@@ -36,7 +36,7 @@
   "keyboard_button_ö": ["KEY_SEMICOLON", ";", ":"],
   "keyboard_button_ä": ["KEY_APOSTROPHE", "'", "\""],
   "keyboard_button_hash": ["KEY_BACKSLASH", "\\", "|"],
-  "keyboard_button_less": ["KEY_102ND", "<", ">", "|", ""],
+  "keyboard_button_less": [],
   "keyboard_button_y": ["KEY_Z", "z", "Z"],
   "keyboard_button_x": ["KEY_X", "x", "X"],
   "keyboard_button_c": ["KEY_C", "c", "C"],
