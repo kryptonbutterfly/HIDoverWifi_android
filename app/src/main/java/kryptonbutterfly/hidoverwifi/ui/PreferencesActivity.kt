@@ -27,6 +27,12 @@ class PreferencesActivity : AppCompatActivity() {
 		enableEdgeToEdge()
 		setContentView(R.layout.activity_preferences)
 		main = findViewById(R.id.keyboardTopBar)
+		
+		keyboardLayout = findViewById(R.id.keyboardLayout)
+		layoutAdapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item)
+		layoutAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+		keyboardLayout.adapter = layoutAdapter
+		
 		ViewCompat.setOnApplyWindowInsetsListener(main) { v, insets ->
 			val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
 			v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -34,31 +40,23 @@ class PreferencesActivity : AppCompatActivity() {
 		}
 		
 		val prefs = prefs(this)
-		prefs.devices[prefs.currentDevice]?.also { device ->
-			
-			val switchScrollBar = findViewById<SwitchCompat>(R.id.switchScrollBar)
-			keyboardLayout = findViewById(R.id.keyboardLayout)
-			val copyFromHost = findViewById<SwitchCompat>(R.id.copyFromHost)
-			
-			switchScrollBar.isChecked = prefs.showScrollBar
-			
-			layoutAdapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item)
-			layoutAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-			keyboardLayout.adapter = layoutAdapter
-			
-			copyFromHost.isChecked = prefs.copyFromHost
-			
-			onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
-				override fun handleOnBackPressed() {
-					prefs.showScrollBar = switchScrollBar.isChecked
-					
-					prefs.keyboardLayout = keyboardLayout.selectedItem as String
-					prefs.copyFromHost = copyFromHost.isChecked
-					savePrefs(this@PreferencesActivity)
-					finish()
-				}
-			})
-		}
+		
+		val switchScrollBar = findViewById<SwitchCompat>(R.id.switchScrollBar)
+		val copyFromHost = findViewById<SwitchCompat>(R.id.copyFromHost)
+		
+		switchScrollBar.isChecked = prefs.showScrollBar
+		copyFromHost.isChecked = prefs.copyFromHost
+		
+		onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+			override fun handleOnBackPressed() {
+				prefs.showScrollBar = switchScrollBar.isChecked
+				
+				prefs.keyboardLayout = keyboardLayout.selectedItem as String
+				prefs.copyFromHost = copyFromHost.isChecked
+				savePrefs(this@PreferencesActivity)
+				finish()
+			}
+		})
 	}
 	
 	override fun onWindowFocusChanged(hasFocus: Boolean) {

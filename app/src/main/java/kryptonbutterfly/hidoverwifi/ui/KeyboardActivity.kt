@@ -126,6 +126,16 @@ class KeyboardActivity : AppCompatActivity() {
 		fun attach(id: Int, key: String) {
 			findViewById<View>(id).setOnTouchListener(KeyListener(key))
 		}
+		attach(R.id.buttonMediaRewind, "KEY_REWIND")
+		attach(R.id.buttonMediaFastforward, "KEY_FASTFORWARD")
+		
+		attach(R.id.buttonMediaPrevious, "KEY_PREVIOUS_SONG")
+		attach(R.id.buttonMediaPause, "KEY_PLAY_PAUSE")
+		attach(R.id.buttonMediaNext, "KEY_NEXT_SONG")
+		attach(R.id.buttonVolumeMute, "KEY_MUTE")
+		attach(R.id.buttonVolumeDown, "KEY_VOLUME_DOWN")
+		attach(R.id.buttonVolumeUp, "KEY_VOLUME_UP")
+		
 		attach(R.id.buttonRightArrow, "KEY_RIGHT")
 		attach(R.id.buttonDownArrow, "KEY_DOWN")
 		attach(R.id.buttonLeftArrow, "KEY_LEFT")
